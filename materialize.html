@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-`<html>
+<html>
 
 <head>
     <!--Import Google Icon Font-->
@@ -62,16 +62,35 @@
     <div class="row">
 
         <div class="col s4">
-        <h5>some</h5>
-  
+          <!-- Promo Content 1 goes here -->
+          <script>
+          const settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": "https://matchilling-chuck-norris-jokes-v1.p.rapidapi.com/jokes/random",
+            "method": "GET",
+            "headers": {
+                "accept": "application/json",
+                "x-rapidapi-key": "SIGN-UP-FOR-KEY",
+                "x-rapidapi-host": "matchilling-chuck-norris-jokes-v1.p.rapidapi.com"
+            }
+        };
+        
+        $.ajax(settings).done(function (response) {
+            console.log(response);
+        });
+    </script>
         </div>
         <div class="col s4">
-         <h5>thing</h5>
+          <!-- Promo Content 2 goes here -->
         </div>
         <div class="col s4">
-        <h5>here</h5>
+          <!-- Promo Content 3 goes here -->
         </div>
-        <ul class="pagination">
+
+
+        <!-- pagination code here for possible later use -->
+        <!-- <ul class="pagination">
             <div class="center-align">
             <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
             <li class="active"><a href="#!">1</a></li>
@@ -81,7 +100,7 @@
             <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
         </div>
     </div>  
-        </ul>
+        </ul> -->
     <!--JavaScript at end of body for optimized loading-->
     <script type="text/javascript" src="js/materialize.min.js"></script>
 </body>
