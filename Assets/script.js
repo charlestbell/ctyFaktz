@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 // <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIwzALxUPNbatRBj3Xi1Uhp0fFzwWNBkE&libraries=places">
 function initAutocomplete() {
@@ -101,3 +102,14 @@ $.ajax(settings).done(function (response) {
   var newtag = $("<h1>").text(response.population);
       $("h1").append(newtag);
 });
+=======
+let queryURL =
+  "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=Museum%20of%20Contemporary%20Art%20Australia&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry&key=AIzaSyBxxikd5sBYySsC4ExQM_Y1plVzBP7Ljbk";
+$.ajax({
+  url: queryURL,
+  method: "GET",
+  dataType: "json",
+}).then(function (response) {
+  console.log(response);
+});
+>>>>>>> 81233e625a7ed0f98f1b14cf78fb9cf0b5f39d1f
