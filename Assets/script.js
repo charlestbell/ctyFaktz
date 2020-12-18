@@ -1,3 +1,6 @@
+
+var searchInput = "";
+
 // <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIwzALxUPNbatRBj3Xi1Uhp0fFzwWNBkE&libraries=places">
 function initAutocomplete() {
   const map = new google.maps.Map(document.getElementById("map"), {
@@ -29,8 +32,14 @@ function initAutocomplete() {
     markers = [];
     // For each place, get the icon, name and location.
     const bounds = new google.maps.LatLngBounds();
+    /////////////////////////////////////
+    //create city name element
+    var cityName = $("<h1>").text(places[0].formatted_address);
+    //append city name to name div
+    $(".name").append(cityName);
 
-    console.log(places); //console log objects
+    // console.log(geonames[0].summary); //console log objects
+    searchInput = places[0].name;
 
     ///////////////////////
     places.forEach((place) => {
@@ -63,24 +72,33 @@ function initAutocomplete() {
       }
     });
     map.fitBounds(bounds);
+    //wikipedia api
+    const geoSettings = {
+      url:
+        "http://api.geonames.org/wikipediaSearchJSON?q=" + searchInput + "&maxRows=10&username=hunter7",
+    //   // url: "http://api.geonames.org/citiesJSON?north=44.1&south=-9.9&east=-22.4&west=55.2&lang=de&username=hunter7",
+    //   // url: "http://api.geonames.org/getJSON?geonameId=8096217&username=hunter7",//this is good alot of info but still need the geoname id
+    //   // url: "http://api.geonames.org/wikipediaBoundingBoxJSON?north=34.033481&south=33.907677&east=-117.54897&west=-117.615501&username=hunter7", //this gets the summary
+      method: "GET",
+    };
+    $.ajax(geoSettings).then(function (resp) {
+      console.log("geonames");
+      console.log(resp);
+              //create sumamry element
+              var summary = $("<p>").text(resp[0].summary);
+              $(".summary").append(sumamry);
+    });
+    //end of wiki api
   });
 }
 
+
+
 //data api
-const geoSettings = {
-  url:
-    "http://api.geonames.org/wikipediaSearchJSON?q=eastvale&postalcode=92880&maxRows=10&username=hunter7",
-//   // url: "http://api.geonames.org/citiesJSON?north=44.1&south=-9.9&east=-22.4&west=55.2&lang=de&username=hunter7",
-//   // url: "http://api.geonames.org/getJSON?geonameId=8096217&username=hunter7",//this is good alot of info but still need the geoname id
-//   // url: "http://api.geonames.org/wikipediaBoundingBoxJSON?north=34.033481&south=33.907677&east=-117.54897&west=-117.615501&username=hunter7", //this gets the summary
-//   method: "GET",
-};
-$.ajax(geoSettings).then(function (resp) {
-  console.log("geonames");
-  console.log(resp);
+
   //     var newtag = $("<h1>").text(resp.geonames[0].summary);
   //         $("h1").append(newtag);
-});
+
 // const settings = {
 //   async: true,
 //   crossDomain: true,
