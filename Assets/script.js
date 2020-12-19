@@ -8,10 +8,25 @@ function initAutocomplete() {
     zoom: 11, //zoom increases as number increases
     mapTypeId: "roadmap",
   });
+  
+  //Auto complete parameters which limits the search to cities
+  // var options = {
+    // types: ['(cities)'],
+    // componentRestrictions: {country: "us"} //sets the search to a specific country
+  //  };
+
   // Create the search box and link it to the UI element.
   const input = document.getElementById("pac-input");
+
+  //Search box without auto correct
   const searchBox = new google.maps.places.SearchBox(input);
-  // map.controls[google.maps.ControlPosition.TOP_LEFT].push(input); //attaches search bar to map
+
+  //Search box with auto correct
+  // const searchBox = new google.maps.places.Autocomplete(input, options);
+
+  //attaches search bar to map
+  // map.controls[google.maps.ControlPosition.TOP_LEFT].push(input); 
+
   // Bias the SearchBox results towards current map's viewport.
   map.addListener("bounds_changed", () => {
     searchBox.setBounds(map.getBounds());
@@ -85,8 +100,8 @@ function initAutocomplete() {
       console.log("geonames");
       console.log(resp);
               //create sumamry element
-              var summary = $("<p>").text(resp[0].summary);
-              $(".summary").append(sumamry);
+              var summary = $("<p>").text(resp.geonames[0].summary);
+              $(".summary").append(summary);
     });
     //end of wiki api
   });
