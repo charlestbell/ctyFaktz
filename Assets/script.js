@@ -1,7 +1,7 @@
 var searchInput = "";
 var terms;
-var i;
-
+var population;
+var pop;
 // <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIwzALxUPNbatRBj3Xi1Uhp0fFzwWNBkE&libraries=places">
 function initAutocomplete() {
   const map = new google.maps.Map(document.getElementById("map"), {
@@ -49,6 +49,8 @@ function initAutocomplete() {
     // For each place, get the icon, name and location.
     const bounds = new google.maps.LatLngBounds();
     /////////////////////////////////////
+    console.log(places);
+
     //create city name element
     var cityName = $("<h1>").text(places[0].formatted_address);
     //append city name to name div
@@ -109,6 +111,36 @@ function initAutocomplete() {
     //end of wiki api
      terms = ["Starbucks", "Resturants", "Museums", "Bowling Alley"];
 
+    
+  // });
+// }
+
+    //openweatherapi
+
+    var queryURL5Day = `https://api.openweathermap.org/data/2.5/forecast?q=${searchInput}&appid=55165c51eb244bc563baf90a2d02b714`;
+
+    //ajax call
+    $.ajax({
+      url: queryURL5Day,
+      method: "GET",
+    }).then(function (response) {
+      console.log(response);
+      console.log(response.city.population);
+      pop = response.city.population;
+      population = $("<p>").text(`Population: ${response.city.population}`);
+      $(".summary").append(population);
+    });
+    var queryURLcur = `https://api.openweathermap.org/data/2.5/weather?q=${searchInput}&appid=55165c51eb244bc563baf90a2d02b714`;
+
+    $.ajax({
+      url: queryURLcur,
+      method: "GET",
+    }).then(function (response) {
+      console.log(`weather`);
+      console.log(response);
+    });
+    //end of open weather
+
     for ( i = 0; i < terms.length; i++) {
       // yelp api
       const nameOfResponse = terms[i]
@@ -133,8 +165,11 @@ function initAutocomplete() {
       };
 
       $.ajax(settings).then(function (response) {
-        console.log(nameOfResponse);
-        var items = $("<p>").text(nameOfResponse+ ": " + response.total);
+        // console.log(nameOfResponse);
+        // console.log("total" + response.total);
+        // console.log("population" + pop);
+        var perCapita = (response.total / pop) ;
+        var items = $("<p>").text(nameOfResponse+ " per capita: " + perCapita);
         $(".summary").append(items);
       });
     }
