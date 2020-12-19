@@ -99,3 +99,15 @@
   #target {
     width: 345px;
   }
+
+  #searchButton {
+    padding-top: 0px;
+    padding-left: 19px;
+  }
+
+  .btn  {
+    letter-spacing: 4.5px;
+    border-radius: 5px;
+    height: 47px;
+    line-height: 47px;
+  }
