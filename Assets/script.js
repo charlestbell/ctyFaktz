@@ -48,7 +48,7 @@ function initAutocomplete() {
     //create city name element
     var cityName = $("<h1>").text(places[0].formatted_address);
     //append city name to name div
-    $(".name").append(cityName);
+    $("#usefulFactoids").append(cityName);
     // console.log(geonames[0].summary); //console log objects
     searchInput = places[0].name;
     ///////////////////////
@@ -97,7 +97,7 @@ function initAutocomplete() {
       console.log(resp);
       //create sumamry element
       var summary = $("<p>").text(resp.geonames[0].summary);
-      $(".summary").append(summary);
+      $("#usefulFactoids").append(summary);
     });
     //end of wiki api
      terms = ["Starbucks", "Resturants", "Museums", "Bowling Alley"];
@@ -119,7 +119,7 @@ function initAutocomplete() {
       console.log(response.city.population);
       pop = response.city.population;
       population = $("<p>").text(`Population: ${response.city.population}`);
-      $(".summary").append(population);
+      $("#usefulFactoids").append(population);
     });
     var queryURLcur = `https://api.openweathermap.org/data/2.5/weather?q=${searchInput}&appid=55165c51eb244bc563baf90a2d02b714`;
 
@@ -161,7 +161,7 @@ function initAutocomplete() {
         // console.log("population" + pop);
         var perCapita = (response.total / pop) ;
         var items = $("<p>").text(nameOfResponse+ " per capita: " + perCapita);
-        $(".summary").append(items);
+        $("#usefulFactoids").append(items);
       });
     }
   });
