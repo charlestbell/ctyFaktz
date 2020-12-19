@@ -1,5 +1,6 @@
-
 var searchInput = "";
+var terms;
+var i;
 
 // <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIwzALxUPNbatRBj3Xi1Uhp0fFzwWNBkE&libraries=places">
 function initAutocomplete() {
@@ -8,11 +9,11 @@ function initAutocomplete() {
     zoom: 11, //zoom increases as number increases
     mapTypeId: "roadmap",
   });
-  
+
   //Auto complete parameters which limits the search to cities
   // var options = {
-    // types: ['(cities)'],
-    // componentRestrictions: {country: "us"} //sets the search to a specific country
+  // types: ['(cities)'],
+  // componentRestrictions: {country: "us"} //sets the search to a specific country
   //  };
 
   // Create the search box and link it to the UI element.
@@ -25,7 +26,7 @@ function initAutocomplete() {
   // const searchBox = new google.maps.places.Autocomplete(input, options);
 
   //attaches search bar to map
-  // map.controls[google.maps.ControlPosition.TOP_LEFT].push(input); 
+  // map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
   // Bias the SearchBox results towards current map's viewport.
   map.addListener("bounds_changed", () => {
@@ -90,29 +91,60 @@ function initAutocomplete() {
     //wikipedia api
     const geoSettings = {
       url:
-        "http://api.geonames.org/wikipediaSearchJSON?q=" + searchInput + "&maxRows=10&username=hunter7",
-    //   // url: "http://api.geonames.org/citiesJSON?north=44.1&south=-9.9&east=-22.4&west=55.2&lang=de&username=hunter7",
-    //   // url: "http://api.geonames.org/getJSON?geonameId=8096217&username=hunter7",//this is good alot of info but still need the geoname id
-    //   // url: "http://api.geonames.org/wikipediaBoundingBoxJSON?north=34.033481&south=33.907677&east=-117.54897&west=-117.615501&username=hunter7", //this gets the summary
+        "http://api.geonames.org/wikipediaSearchJSON?q=" +
+        searchInput +
+        "&maxRows=10&username=hunter7",
+      //   // url: "http://api.geonames.org/citiesJSON?north=44.1&south=-9.9&east=-22.4&west=55.2&lang=de&username=hunter7",
+      //   // url: "http://api.geonames.org/getJSON?geonameId=8096217&username=hunter7",//this is good alot of info but still need the geoname id
+      //   // url: "http://api.geonames.org/wikipediaBoundingBoxJSON?north=34.033481&south=33.907677&east=-117.54897&west=-117.615501&username=hunter7", //this gets the summary
       method: "GET",
     };
     $.ajax(geoSettings).then(function (resp) {
       console.log("geonames");
       console.log(resp);
-              //create sumamry element
-              var summary = $("<p>").text(resp.geonames[0].summary);
-              $(".summary").append(summary);
+      //create sumamry element
+      var summary = $("<p>").text(resp.geonames[0].summary);
+      $(".summary").append(summary);
     });
     //end of wiki api
+     terms = ["Starbucks", "Resturants", "Museums", "Bowling Alley"];
+
+    for ( i = 0; i < terms.length; i++) {
+      // yelp api
+      const nameOfResponse = terms[i]
+      var herokuApp = "https://cors-anywhere.herokuapp.com/";
+      var settings = {
+        async: true,
+        crossDomain: true,
+        url:
+          herokuApp +
+          "https://api.yelp.com/v3/businesses/search?term=" +
+          terms[i] +
+          "&location=" +
+          searchInput +
+          "&limit=50&offset=51",
+        method: "GET",
+        headers: {
+          Authorization:
+            "Bearer vvvcCtcJU8SYfZfJOTtjqBoJWMEil9uycqIhOZ29UVDqHxQezCjKDUbSCkeAwmsrX4sRpOZffUZihfpWj08qre6NrhPhTeVzhBOhHjNcjDN2XHLYFvPVcgvDl5TZX3Yx",
+          // "Access-Control-Allow-Origin": "*"
+        },
+      
+      };
+
+      $.ajax(settings).then(function (response) {
+        console.log(nameOfResponse);
+        var items = $("<p>").text(nameOfResponse+ ": " + response.total);
+        $(".summary").append(items);
+      });
+    }
   });
 }
 
-
-
 //data api
 
-  //     var newtag = $("<h1>").text(resp.geonames[0].summary);
-  //         $("h1").append(newtag);
+//     var newtag = $("<h1>").text(resp.geonames[0].summary);
+//         $("h1").append(newtag);
 
 // const settings = {
 //   async: true,
@@ -140,6 +172,6 @@ $.ajax({
   method: "GET",
   dataType: "json",
 }).then(function (response) {
-//   console.log("places sydney");
-//   console.log(response);
+  //   console.log("places sydney");
+  //   console.log(response);
 });
