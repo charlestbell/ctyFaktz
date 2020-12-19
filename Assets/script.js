@@ -143,3 +143,4 @@ $.ajax({
 //   console.log("places sydney");
 //   console.log(response);
 });
+// sharif added this //
