@@ -15,7 +15,7 @@ body {
 }
 
 #mainNav {
-  height: 74px;
+  height: 67px;
 }
 /* Optional: Makes the sample page fill the window. */
 html,
@@ -160,4 +160,8 @@ body {
 }
 .pr-2 {
   padding-right: 2rem;
+}
+#logo {
+  font-family: "Bangers", cursive;
+  padding-left: 10px;
 }
