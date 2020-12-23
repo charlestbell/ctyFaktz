@@ -138,3 +138,7 @@ body {
 .pr-2 {
   padding-right: 2rem;
 }
+#logo {
+  font-family: 'Bangers', cursive;
+  padding-left: 10px;
+}
