@@ -1,3 +1,11 @@
+@font-face {
+  font-family: "gilroyextrabold";
+  src: url("./fontGilroyExtraBold/gilroy-extrabold-webfont.woff2")
+      format("woff2"),
+    url("./fontGilroyExtraBold/gilroy-extrabold-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
 /* Optional: Makes the sample page fill the window. */
 html,
 body {
@@ -9,11 +17,12 @@ body {
        * element that contains the map. */
 #map {
   height: 70%;
-  /* margin-top: 200px; */
-
   position: absolute;
 }
 
+#logo {
+  font-size: 3.1rem;
+}
 #mainNav {
   height: 67px;
 }
@@ -23,6 +32,7 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
+  font-family: "gilroyextrabold"; !important
 }
 
 #description {
@@ -80,11 +90,10 @@ body {
   font-family: Roboto;
   font-size: 15px;
   font-weight: 300;
-  margin-left: 120px;
-  margin-right: 10px;
+
   padding: 0 15px 0 13px;
   text-overflow: ellipsis;
-  width: 68%;
+  width: 100%;
 }
 
 #pac-input:focus {
