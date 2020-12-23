@@ -2,57 +2,6 @@ var searchInput = "";
 var terms;
 var population;
 var pop;
-
-//an array of objects that holds the funny fact description and the number accosiated with it.
-var funFacts = [
-  {
-    description: "Kim's Convenience Stores",
-    amount: 100,
-  },
-  {
-    description: "Friendly neighborhood Spider men",
-    amount: 100,
-  },
-  {
-    description: "It clowns hiding in storm drains",
-    amount: 100,
-  },
-  {
-    description: "Street rats",
-    amount: 100,
-  },
-  {
-    description: "Scenic overlooks for parking",
-    amount: 100,
-  },
-  {
-    description: "Sketchy street meat carts",
-    amount: 100,
-  },
-  {
-    description: "Disney Princesses",
-    amount: 100,
-  },
-  {
-    description: "Autobots in disguise",
-    amount: 100,
-  },
-  {
-    description: "Mutant Ninja Turtles in Sewers",
-    amount: 100,
-  },
-  {
-    description: "Mutants",
-    amount: 100,
-  },
-];
-
-//Random number genorator to get random number for funny facts
-function getrando() {
-  var rando = Math.floor(Math.random() * 10);
-  return rando;
-}
-
 // <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIwzALxUPNbatRBj3Xi1Uhp0fFzwWNBkE&libraries=places">
 function initAutocomplete() {
   const map = new google.maps.Map(document.getElementById("map"), {
@@ -93,6 +42,8 @@ function initAutocomplete() {
     markers = [];
     // For each place, get the icon, name and location.
     const bounds = new google.maps.LatLngBounds();
+    /////////////////////////////////////
+    console.log(places);
 
     //create city name element
     var cityName = $("<h1>").text(places[0].formatted_address);
@@ -100,7 +51,7 @@ function initAutocomplete() {
     $("#usefulFactoids").append(cityName);
     // console.log(geonames[0].summary); //console log objects
     searchInput = places[0].name;
-
+    ///////////////////////
     places.forEach((place) => {
       if (!place.geometry) {
         console.log("Returned place contains no geometry");
@@ -142,12 +93,18 @@ function initAutocomplete() {
       method: "GET",
     };
     $.ajax(geoSettings).then(function (resp) {
+      console.log("geonames");
+      console.log(resp);
       //create sumamry element
       var summary = $("<p>").text(resp.geonames[0].summary);
       $("#usefulFactoids").append(summary);
     });
     //end of wiki api
-    terms = ["Starbucks", "Resturants", "Museums", "Bowling Alley"];
+     terms = ["Starbucks", "resturant", "museum", "bowling alley"];
+
+    
+  // });
+// }
 
     //openweatherapi
 
@@ -158,23 +115,26 @@ function initAutocomplete() {
       url: queryURL5Day,
       method: "GET",
     }).then(function (response) {
+      console.log(response);
+      console.log(response.city.population);
       pop = response.city.population;
       population = $("<p>").text(`Population: ${response.city.population}`);
       $("#usefulFactoids").append(population);
-          //Funny facts
-    for (var x = 0; x < 3; x++) {
-      var index = getrando();
-      var funFactAmounts = Math.round(pop / funFacts[index].amount);
-      var funnyFacts = $("<p>").text(
-        funFacts[index].description + ": " + funFactAmounts
-      );
-      $("#usefulFactoids").append(funnyFacts);
-    }
-    //end of funny facts
     });
-    for (i = 0; i < terms.length; i++) {
+    var queryURLcur = `https://api.openweathermap.org/data/2.5/weather?q=${searchInput}&appid=55165c51eb244bc563baf90a2d02b714`;
+
+    $.ajax({
+      url: queryURLcur,
+      method: "GET",
+    }).then(function (response) {
+      console.log(`weather`);
+      console.log(response);
+    });
+    //end of open weather
+
+    for ( i = 0; i < terms.length; i++) {
       // yelp api
-      const nameOfResponse = terms[i];
+      const nameOfResponse = terms[i]
       var herokuApp = "https://cors-anywhere.herokuapp.com/";
       var settings = {
         async: true,
@@ -192,27 +152,28 @@ function initAutocomplete() {
             "Bearer vvvcCtcJU8SYfZfJOTtjqBoJWMEil9uycqIhOZ29UVDqHxQezCjKDUbSCkeAwmsrX4sRpOZffUZihfpWj08qre6NrhPhTeVzhBOhHjNcjDN2XHLYFvPVcgvDl5TZX3Yx",
           // "Access-Control-Allow-Origin": "*"
         },
+      
       };
 
-      function multiply(pop){
-        if ( pop > 1000000) {
-          var mult =  100000 ;
-        } else {
-          mult = 10000;
-        };
-        return mult;
-      }
+      // function multiply(pop){
+      //   if ( pop < 100000) {
+      //     var mult =  100000 ;
+      //   } else {
+      //     mult = 10000;
+      //   };
+      //   return mult;
+      // }
 
-      multiply()
+      // multiply()
 
       $.ajax(settings).then(function (response) {
         console.log(response);
         // console.log("total" + response.total);
         // console.log("population" + pop);
-        var perCapita = Math.ceil((response.total / pop) * multiply(pop) )  ;
-        var items = $("<p>").text(nameOfResponse + " per capita: " + perCapita + "" );
+        var perCapita = Math.ceil((pop / response.total))  ;
+        console.log(perCapita);
+        var items = $("<p>").text("There is 1 " + nameOfResponse + " per " + perCapita + " people." );
         $("#usefulFactoids").append(items);
-        console.log("pop = " + pop);
       });
     }
   });
@@ -249,4 +210,5 @@ $.ajax({
   //   console.log("places sydney");
   //   console.log(response);
 });
-console.log(`pop: ${this.pop}`);
+
+
