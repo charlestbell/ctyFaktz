@@ -155,12 +155,23 @@ function initAutocomplete() {
       
       };
 
+      function multiply(pop){
+        if ( pop > 1000000) {
+          var mult =  100000 ;
+        } else {
+          mult = 10000;
+        };
+        return mult;
+      }
+
+      multiply()
+
       $.ajax(settings).then(function (response) {
-        // console.log(nameOfResponse);
+        console.log(response);
         // console.log("total" + response.total);
         // console.log("population" + pop);
-        var perCapita = (response.total / pop) ;
-        var items = $("<p>").text(nameOfResponse+ " per capita: " + perCapita);
+        var perCapita = Math.ceil((response.total / pop) * multiply(pop) )  ;
+        var items = $("<p>").text(nameOfResponse + " per capita: " + perCapita + "" );
         $("#usefulFactoids").append(items);
       });
     }
