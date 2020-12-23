@@ -97,7 +97,7 @@ function initAutocomplete() {
     //create city name element
     var cityName = $("<h1>").text(places[0].formatted_address);
     //append city name to name div
-    $("#usefulFactoids").append(cityName);
+    $("#cityDetails").append(cityName);
     // console.log(geonames[0].summary); //console log objects
     searchInput = places[0].name;
 
@@ -144,7 +144,7 @@ function initAutocomplete() {
     $.ajax(geoSettings).then(function (resp) {
       //create sumamry element
       var summary = $("<p>").text(resp.geonames[0].summary);
-      $("#usefulFactoids").append(summary);
+      $("#citySummary").append(summary);
     });
     //end of wiki api
     terms = ["Starbucks", "Resturants", "Museums", "Bowling Alley"];
@@ -160,15 +160,14 @@ function initAutocomplete() {
     }).then(function (response) {
       pop = response.city.population;
       population = $("<p>").text(`Population: ${response.city.population}`);
-      $("#usefulFactoids").append(population);
+      $("#cityDetails").append(population);
           //Funny facts
     for (var x = 0; x < 3; x++) {
       var index = getrando();
       var funFactAmounts = Math.round(pop / funFacts[index].amount);
-      var funnyFacts = $("<p>").text(
-        funFacts[index].description + ": " + funFactAmounts
-      );
-      $("#usefulFactoids").append(funnyFacts);
+      var funnyFacts = funFacts[index].description;
+      $(`#funFact${x}`).append(funnyFacts);
+      $(`funAmount${x}`).append(funFactAmounts);
     }
     //end of funny facts
     });
