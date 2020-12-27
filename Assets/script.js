@@ -92,7 +92,7 @@ function getrando() {
       }
     }
   }
-  console.log(usedFacts);
+  // console.log(usedFacts);
   usedFacts.push(rando);
   return rando;
 }
@@ -316,11 +316,6 @@ $("form").keypress(function (event) {
   if (event.key == "Enter") {
     $("#searchButton").click();
   }
-});
-
-$(".searchButton").click(function () {
-  console.log("you clicked me");
-  initAutocomplete();
 });
 
 //Google places api | Need to look into this to see if we can pull pictures from it
