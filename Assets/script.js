@@ -116,14 +116,14 @@ function initAutocomplete() {
     markers = [];
     usedFacts = []; //Sets the array that contains the fun fact indexes that have bveen used to null or empty.
 
-    $("#cityDetails").empty(); //Empties out element that contains the city name and population
+    $("#cityDetails").text("About"); //Empties out element that contains the city name and population
     $("#citySummary").empty();
 
     // For each place, get the icon, name and location.
     const bounds = new google.maps.LatLngBounds();
 
     //create city name element
-    var cityName = $("<h1>").text(places[0].formatted_address);
+    var cityName = $("<h3>").text(places[0].formatted_address);
 
     //append city name to name div
     $("#cityDetails").append(cityName);
@@ -175,7 +175,6 @@ function initAutocomplete() {
       method: "GET",
     };
     $.ajax(geoSettings).then(function (resp) {
- 
       //create sumamry element
       var summary = $("<p>").text(resp.geonames[0].summary);
       $("#citySummary").append(summary);
@@ -196,7 +195,6 @@ function initAutocomplete() {
 
       //Funny facts
       for (var x = 0; x < 3; x++) {
-        
         var index = getrando(); //Gets random number that has not been called
         var funFactAmounts = Math.round(pop / funFacts[index].amount);
         var funnyFacts = funFacts[index].description; //gets fun fact description from array randomly
@@ -237,7 +235,8 @@ function initAutocomplete() {
       $.ajax(settings).then(function (response) {
         var perCapita = Math.ceil(pop / response.total);
 
-        var items = "There is 1 " + nameOfResponse + " per " + perCapita + " people.";
+        var items =
+          "There is 1 " + nameOfResponse + " per " + perCapita + " people.";
         $(`#usefulFactoids${x}`).append(items);
       });
     }
