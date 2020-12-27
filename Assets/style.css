@@ -120,9 +120,9 @@ body {
 #searchButton {
   padding-top: 0px;
   padding-left: 19px;
-  font-family: 'Staatliches', cursive;
-  font-weight: 50;
-  font-size: 18px;
+  font-family: Roboto;
+  font-weight: 400;
+  font-size: 14px;
 }
 .bold-text {
   font-weight: bold;
