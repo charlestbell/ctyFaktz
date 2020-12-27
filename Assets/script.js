@@ -15,7 +15,7 @@ var funFacts = [
     amount: 100,
   },
   {
-    description: "It clowns hiding in storm drains",
+    description: "'IT' clowns hiding in storm drains",
     amount: 100,
   },
   {
@@ -102,6 +102,8 @@ function initAutocomplete() {
   // Listen for the event fired when the user selects a prediction and retrieve
   // more details for that place.
   searchBox.addListener("places_changed", () => {
+    $(".progress").removeClass("hide"); //Show Loading Bar
+
     const places = searchBox.getPlaces();
 
     if (places.length == 0) {
@@ -123,7 +125,9 @@ function initAutocomplete() {
     const bounds = new google.maps.LatLngBounds();
 
     //create city name element
-    var cityName = $("<h1>").text(places[0].formatted_address);
+    var cityName = $("<h4>")
+      .text(places[0].formatted_address)
+      .addClass("bold-text mt-1");
 
     //append city name to name div
     $("#cityDetails").append(cityName);
@@ -175,7 +179,6 @@ function initAutocomplete() {
       method: "GET",
     };
     $.ajax(geoSettings).then(function (resp) {
- 
       //create sumamry element
       var summary = $("<p>").text(resp.geonames[0].summary);
       $("#citySummary").append(summary);
@@ -196,7 +199,6 @@ function initAutocomplete() {
 
       //Funny facts
       for (var x = 0; x < 3; x++) {
-        
         var index = getrando(); //Gets random number that has not been called
         var funFactAmounts = Math.round(pop / funFacts[index].amount);
         var funnyFacts = funFacts[index].description; //gets fun fact description from array randomly
@@ -237,8 +239,11 @@ function initAutocomplete() {
       $.ajax(settings).then(function (response) {
         var perCapita = Math.ceil(pop / response.total);
 
-        var items = "There is 1 " + nameOfResponse + " per " + perCapita + " people.";
+        var items =
+          "There is 1 " + nameOfResponse + " per " + perCapita + " people.";
+        $(`#usefulFactoids${x}`).empty();
         $(`#usefulFactoids${x}`).append(items);
+        $(".progress").addClass("hide"); //Hide Loading Bar
       });
     }
   });
