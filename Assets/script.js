@@ -128,6 +128,8 @@ function initAutocomplete() {
   // Listen for the event fired when the user selects a prediction and retrieve
   // more details for that place.
   searchBox.addListener("places_changed", () => {
+    $(".progress").removeClass("hide"); //Show Loading Bar
+
     const places = searchBox.getPlaces();
 
     if (places.length == 0) {
@@ -149,7 +151,9 @@ function initAutocomplete() {
     const bounds = new google.maps.LatLngBounds();
 
     //create city name element
-    var cityName = $("<h1>").text(places[0].formatted_address);
+    var cityName = $("<h4>")
+      .text(places[0].formatted_address)
+      .addClass("bold-text mt-1");
 
     //append city name to name div
     $("#cityDetails").append(cityName);
@@ -275,6 +279,7 @@ function initAutocomplete() {
         var items =
           "There is 1 " + nameOfResponse + " per " + perCapita + " people.";
         $(`#usefulFactoids${x}`).append(items);
+        $(".progress").addClass("hide"); //Hide Loading Bar
       });
     }
   });
