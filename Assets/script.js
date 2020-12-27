@@ -327,8 +327,11 @@ function initAutocomplete() {
 });
 
 }
+$("form").submit(function (e) {
+  e.preventDefault();
+});
 
-$("#pac-input").keypress(function(event) { 
+$("form").keypress(function(event) { 
   if (event.key == "Enter") { 
       $("#searchButton").click() } 
 }); 
