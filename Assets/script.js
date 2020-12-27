@@ -225,7 +225,7 @@ function initAutocomplete() {
         url:
           herokuApp +
           "https://api.yelp.com/v3/businesses/search?term=" +
-          terms[i] +
+          terms[0] +
           "&location=" +
           searchInput +
           "&limit=50&offset=51",
@@ -245,17 +245,28 @@ function initAutocomplete() {
         $(`#usefulFactoids${x}`).append(items);
         $(".progress").addClass("hide"); //Hide Loading Bar
       });
+    
     }
-  });
-}
+  }
+  )}
 
-//Google places api | Need to look into this to see if we can pull pictures from it
-//Currently not in use
-let heroku = "https://cors-anywhere.herokuapp.com/";
-let queryURL =
-  "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=restaurants+in+sydney&inputtype=textquery&fields=photos,formatted_address,name,opening_hours,rating&locationbias=circle:2000@47.6918452,-122.2226413&key=AIzaSyBxxikd5sBYySsC4ExQM_Y1plVzBP7Ljbk";
-$.ajax({
-  url: heroku + queryURL,
-  method: "GET",
-  dataType: "json",
-}).then(function (response) {});
+
+$("form").submit(function (e) {
+  e.preventDefault();
+});
+
+$("form").keypress(function(event) { 
+  if (event.key == "Enter") { 
+      $("#searchButton").click() } 
+}); 
+
+$("#searchButton").click(function(){
+  initAutocomplete();
+})
+    
+    
+   
+    
+  
+
+
