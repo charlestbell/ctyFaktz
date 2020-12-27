@@ -92,7 +92,6 @@ function getrando() {
       }
     }
   }
-  console.log(usedFacts);
   usedFacts.push(rando);
   return rando;
 }
