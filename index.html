@@ -30,9 +30,7 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAznnjzx8FsrxeGNbrHctSdn1K8ma76x_A&callback=initAutocomplete&libraries=places&v=weekly"
-      defer
-    ></script>
-
+      defer></script>
     <!-- AIzaSyAznnjzx8FsrxeGNbrHctSdn1K8ma76x_A -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- <link rel="stylesheet" href="./Assets/style.css" /> -->
@@ -62,7 +60,7 @@
             </form>
           </div>
           <div class="col s2 center-align">
-            <a class="waves-effect waves-light btn" id="searchButton"
+            <a class="waves-effect waves-light btn searchButton" id="searchButton"
               >get ctyFaktz</a
             >
           </div>
@@ -93,10 +91,10 @@
                 </form>
               </div>
               <div class="col s2">
-                <a class="waves-effect waves-light btn" id="searchButton"
+                <a class="waves-effect waves-light btn searchButton" id="searchButton"
                   >get ctyFaktz</a
                 >
-              </div>
+              </div>  
             </div>
           </div>
         </nav>
@@ -124,6 +122,21 @@
                   <h6 class="bold-text" id="usefulFactoids2"></h6>
                   <!-- <p>Stuff</p> -->
                 </div>
+                <div class="divider"></div>
+                <div class="section">
+                  <h6 class="bold-text" id="usefulFactoids3"></h6>
+                  <!-- <p>Stuff</p> -->
+                </div>
+                <div class="divider"></div>
+                <div class="section">
+                  <h6 class="bold-text" id="usefulFactoids4"></h6>
+                  <!-- <p>Stuff</p> -->
+                </div>
+                <div class="divider"></div>
+                <div class="section">
+                  <h6 class="bold-text" id="usefulFactoids5"></h6>
+                  <!-- <p>Stuff</p> -->
+                </div>
               </div>
             </div>
             <div class="col s12 grey lighten-3 z-depth-1 rounded">
@@ -144,9 +157,15 @@
                   <h6 class="bold-text" id="funFact2"></h6>
                   <p class="bold-text" id="funAmount2"></p>
                 </div>
-              </div>
+                <div class="divider"></div>
+            <div class="section">
+              <h6 class="bold-text" id="funFact3"></h6>
+              <p class="bold-text" id="funAmount3"></p>
             </div>
           </div>
+              </div>
+            </div>
+          
           <!-- City Bio Section -->
           <div class="col s7">
             <div class="mb-1 row">
@@ -172,6 +191,7 @@
               <div class="col s7 z-depth-1 rounded" id="map"></div>
             </div>
           </div>
+        </div>
         </div>
       </div>
       <!-- Footer -->
