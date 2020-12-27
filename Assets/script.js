@@ -49,7 +49,6 @@ var funFacts = [
 ];
 //Function to determine the fun fact amount based of of population total
 function amount(population, index) {
-  console.log(funFacts[index].description);
   var amount;
   if (population < 50000) amount = funFacts[index].amount * 100;
   else if (population > 50000 && population < 150000)
@@ -70,24 +69,30 @@ function amount(population, index) {
     amount = funFacts[index].amount * 90;
   else amount = funFacts[index].amount * 10000;
 
-  console.log(amount);
   return amount;
 }
 
 //Random number genorator to get random number for funny facts
 //function also checks if random number has already been generated in current sequence
 function getrando() {
-  var rando = Math.floor(Math.random() * 10);
-  if (usedFacts[0] === null) {
-    //If used fact array is empty push random number to array
-    usedFacts.push(rando);
-  } else {
-    for (var x = 0; x < usedFacts.length; x++) {
-      if (usedFacts[x] === rando) {
-        getrando();
+  var match = true;
+  while (match) {
+    match = false;
+    var rando = Math.floor(Math.random() * 10);
+    if (usedFacts[0] === null) {
+      //If used fact array is empty push random number to array
+      usedFacts.push(rando);
+      match = false;
+    } else {
+      for (var x = 0; x < usedFacts.length; x++) {
+        if (usedFacts[x] === rando) {
+          console.log(`Issue found`);
+          match = true;
+        }
       }
     }
   }
+  console.log(usedFacts);
   usedFacts.push(rando);
   return rando;
 }
@@ -229,6 +234,7 @@ function initAutocomplete() {
         $(`#funAmount${x}`).empty();
 
         var index = getrando(); //Gets random number that has not been called
+
         var funFactAmounts = Math.round(pop / amount(pop, index));
         var funnyFacts = funFacts[index].description; //gets fun fact description from array randomly
         $(`#funFact${x}`).append(funnyFacts);
@@ -284,6 +290,20 @@ function initAutocomplete() {
     }
   });
 }
+
+$("form").submit(function (e) {
+  e.preventDefault();
+});
+
+$("form").keypress(function (event) {
+  if (event.key == "Enter") {
+    $("#searchButton").click();
+  }
+});
+
+$("#searchButton").click(function () {
+  initAutocomplete();
+});
 
 //Google places api | Need to look into this to see if we can pull pictures from it
 //Currently not in use
