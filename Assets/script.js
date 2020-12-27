@@ -15,7 +15,7 @@ var funFacts = [
     amount: 100,
   },
   {
-    description: "It clowns hiding in storm drains",
+    description: "'IT' clowns hiding in storm drains",
     amount: 100,
   },
   {
@@ -116,7 +116,7 @@ function initAutocomplete() {
     markers = [];
     usedFacts = []; //Sets the array that contains the fun fact indexes that have bveen used to null or empty.
 
-    $("#cityDetails").text("About"); //Empties out element that contains the city name and population
+    $("#cityDetails").empty(); //Empties out element that contains the city name and population
     $("#citySummary").empty();
 
     // For each place, get the icon, name and location.

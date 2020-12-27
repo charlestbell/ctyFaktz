@@ -27,7 +27,7 @@ body {
   padding-left: 6px;
 }
 #citySummary {
-  height: 150px;
+  min-height: 150px;
 }
 #logo {
   font-size: 3.1rem;
@@ -62,9 +62,12 @@ h3 {
 }
 
 #usefulFactoids {
-  height: 450px;
+  min-height: 450px;
 }
 
+.rounded {
+  border-radius: 4px;
+}
 .pac-card {
   margin: 10px 10px 0 0;
   border-radius: 2px 0 0 2px;
@@ -123,6 +126,10 @@ h3 {
 #searchButton {
   padding-top: 0px;
   padding-left: 19px;
+}
+
+.divider {
+  margin-top: -9px !important;
 }
 
 .btn {
