@@ -92,13 +92,16 @@ function getrando() {
       }
     }
   }
-  console.log(usedFacts);
+  // console.log(usedFacts);
   usedFacts.push(rando);
   return rando;
 }
+
 //beginning of Google maps API
 // <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIwzALxUPNbatRBj3Xi1Uhp0fFzwWNBkE&libraries=places">
 function initAutocomplete() {
+  // // Swap which input field is activated
+
   const map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: 33.973019, lng: -117.328236 }, //sets the location when app is opened
     zoom: 11, //zoom increases as number increases
@@ -133,7 +136,21 @@ function initAutocomplete() {
   // Listen for the event fired when the user selects a prediction and retrieve
   // more details for that place.
   searchBox.addListener("places_changed", () => {
+    // Hide the landing page and reveal the search page
+    $(".landingSearchBox").removeAttr("id");
+    if (!$("#landingPage").hasClass("hide")) {
+      console.log("the landing page was visible");
+      $("#landingPage").addClass("hide");
+    }
+    $("#searchPage").removeClass("hide");
+
     $(".progress").removeClass("hide"); //Show Loading Bar
+
+    if (!$(".landingSearchBox").attr("id")) {
+      $("#landingSearchBox").empty();
+      initAutocomplete();
+      console.log("re-initiated");
+    }
 
     const places = searchBox.getPlaces();
 
@@ -299,10 +316,6 @@ $("form").keypress(function (event) {
   if (event.key == "Enter") {
     $("#searchButton").click();
   }
-});
-
-$("#searchButton").click(function () {
-  initAutocomplete();
 });
 
 //Google places api | Need to look into this to see if we can pull pictures from it

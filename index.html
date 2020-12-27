@@ -36,142 +36,163 @@
     <!-- <link rel="stylesheet" href="./Assets/style.css" /> -->
   </head>
   <body>
-    <div id="landingPage" class="hide">
-      <h3>Welcome to ctyFaktz</h3>
-      <h6>City research made fun</h6>
-    </div>
-    <div id="searchPage" class="">
-      <nav id="mainNav" class="mb-1 #ffecb3 amber lighten-3">
-        <div class="row">
-          <div class="nav-wrapper">
-            <div class="col s2">
-              <a href="/index.html" class="brand-logo" id="logo"
-                ><span id="logo" class="teal-text text-lighten-2"
-                  >ctyFaktz</span
-                ></a
-              >
-            </div>
-            <div class="col s7">
-              <form>
-                <div class="input-field">
-                  <input
-                    id="pac-input"
-                    class="controls"
-                    type="text"
-                    placeholder="Find a City"
-                  />
-                </div>
-              </form>
-            </div>
-            <div class="col s2">
-              <a class="waves-effect waves-light btn" id="searchButton"
-                >get ctyFaktz</a
-              >
-            </div>
+    <main>
+      <div id="landingPage" class="">
+        <div class="container">
+          <h5 class="center-align">Welcome to</h5>
+          <div class="center-align">
+            <a href="" class="center-align brand-logo" id="logo"
+              ><span class="teal-text text-lighten-2">ctyFaktz</span></a
+            >
           </div>
+
+          <h6 class="center-align">City research made fun</h6>
+          <div id="landingSearchBar">
+            <form>
+              <div class="input-field">
+                <input
+                  id="pac-input"
+                  class="pac-input controls landingSearchBox"
+                  type="text"
+                  placeholder="Find a City"
+                />
+              </div>
+            </form>
+          </div>
+         
+          </div>
+          <!-- end of landing page -->
         </div>
-      </nav>
-      <div class="progress hide">
-        <div class="indeterminate"></div>
       </div>
-      <div class="row pr-2">
-        <!-- Useful Factoids -->
-        <div class="col s5">
-          <div class="col s12 grey lighten-3 z-depth-1 mb-1 rounded">
-            <div>
-              <p class="grey-text text-darken-1">Useful Faktz</p>
-              <div class="divider"></div>
-              <div class="section">
-                <h6 class="bold-text" id="usefulFactoids0"></h6>
-                <!-- <p>Stuff</p> -->
+      <div id="searchPage" class="hide">
+        <nav id="mainNav" class="mb-1 #ffecb3 amber lighten-3">
+          <div class="row">
+            <div class="nav-wrapper">
+              <div class="col s2">
+                <a href="/index.html" class="brand-logo" id="logo"
+                  ><span id="logo" class="teal-text text-lighten-2"
+                    >ctyFaktz</span
+                  ></a
+                >
               </div>
-              <div class="divider"></div>
-              <div class="section">
-                <h6 class="bold-text" id="usefulFactoids1"></h6>
-                <!-- <p>Stuff</p> -->
-              </div>
-              <div class="divider"></div>
-              <div class="section">
-                <h6 class="bold-text" id="usefulFactoids2"></h6>
-                <!-- <p>Stuff</p> -->
-              </div>
-              <div class="divider"></div>
-              <div class="section">
-                <h6 class="bold-text" id="usefulFactoids3"></h6>
-                <!-- <p>Stuff</p> -->
-              </div>
-              <div class="divider"></div>
-              <div class="section">
-                <h6 class="bold-text" id="usefulFactoids4"></h6>
-                <!-- <p>Stuff</p> -->
-              </div>
-              <div class="divider"></div>
-              <div class="section">
-                <h6 class="bold-text" id="usefulFactoids5"></h6>
-                <!-- <p>Stuff</p> -->
+              <div class="col s7">
+                <form>
+                  <div class="input-field">
+                    <input
+                      id="pac-input"
+                      class="pac-input controls mainSearchBox"
+                      type="text"
+                      placeholder="Find a City"
+                    />
+                  </div>
+                </form>
               </div>
             </div>
           </div>
-          <div class="col s12 grey lighten-3 z-depth-1 rounded">
-            <div id="funFactoids" class="">
-              <p class="grey-text text-darken-1">Fun Faktz</p>
-              <div class="divider"></div>
-              <div class="section">
-                <h6 class="bold-text" id="funFact0"></h6>
-                <p class="bold-text" id="funAmount0"></p>
-              </div>
-              <div class="divider"></div>
-              <div class="section">
-                <h6 class="bold-text" id="funFact1"></h6>
-                <p class="bold-text" id="funAmount1"></p>
-              </div>
-              <div class="divider"></div>
-              <div class="section">
-                <h6 class="bold-text" id="funFact2"></h6>
-                <p class="bold-text" id="funAmount2"></p>
+        </nav>
+        <div class="progress hide">
+          <div class="indeterminate"></div>
+        </div>
+        <div class="row pr-2">
+          <!-- Useful Factoids -->
+          <div class="col s5">
+            <div class="col s12 grey lighten-3 z-depth-1 mb-1 rounded">
+              <div>
+                <p class="grey-text text-darken-1">Useful Faktz</p>
+                <div class="divider"></div>
+                <div class="section">
+                  <h6 class="bold-text" id="usefulFactoids0"></h6>
+                  <!-- <p>Stuff</p> -->
+                </div>
+                <div class="divider"></div>
+                <div class="section">
+                  <h6 class="bold-text" id="usefulFactoids1"></h6>
+                  <!-- <p>Stuff</p> -->
+                </div>
+                <div class="divider"></div>
+                <div class="section">
+                  <h6 class="bold-text" id="usefulFactoids2"></h6>
+                  <!-- <p>Stuff</p> -->
+                </div>
+                <div class="divider"></div>
+                <div class="section">
+                  <h6 class="bold-text" id="usefulFactoids3"></h6>
+                  <!-- <p>Stuff</p> -->
+                </div>
+                <div class="divider"></div>
+                <div class="section">
+                  <h6 class="bold-text" id="usefulFactoids4"></h6>
+                  <!-- <p>Stuff</p> -->
+                </div>
+                <div class="divider"></div>
+                <div class="section">
+                  <h6 class="bold-text" id="usefulFactoids5"></h6>
+                  <!-- <p>Stuff</p> -->
+                </div>
               </div>
             </div>
-            <div class="divider"></div>
+            <div class="col s12 grey lighten-3 z-depth-1 rounded">
+              <div id="funFactoids" class="">
+                <p class="grey-text text-darken-1">Fun Faktz</p>
+                <div class="divider"></div>
+                <div class="section">
+                  <h6 class="bold-text" id="funFact0"></h6>
+                  <p class="bold-text" id="funAmount0"></p>
+                </div>
+                <div class="divider"></div>
+                <div class="section">
+                  <h6 class="bold-text" id="funFact1"></h6>
+                  <p class="bold-text" id="funAmount1"></p>
+                </div>
+                <div class="divider"></div>
+                <div class="section">
+                  <h6 class="bold-text" id="funFact2"></h6>
+                  <p class="bold-text" id="funAmount2"></p>
+                </div>
+                <div class="divider"></div>
             <div class="section">
               <h6 class="bold-text" id="funFact3"></h6>
               <p class="bold-text" id="funAmount3"></p>
             </div>
           </div>
-        </div>
-        <!-- City Bio Section -->
-        <div class="col s7">
-          <div class="mb-1 row">
-            <div class="col s12 grey lighten-3 z-depth-1 rounded">
-              <div class="row">
-                <div class="col s5">
-                  <div>
-                    <p class="grey-text text-darken-1">About</p>
-                    <div class="divider"></div>
-                    <div id="cityDetails"></div>
+              </div>
+            </div>
+          
+          <!-- City Bio Section -->
+          <div class="col s7">
+            <div class="mb-1 row">
+              <div class="col s12 grey lighten-3 z-depth-1 rounded">
+                <div class="row">
+                  <div class="col s5">
+                    <div>
+                      <p class="grey-text text-darken-1">About</p>
+                      <div class="divider"></div>
+                      <div id="cityDetails"></div>
+                    </div>
                   </div>
-                </div>
-                <div class="col s7 mt-1 p-1">
-                  <div
-                    id="citySummary"
-                    class="col s12 grey lighten-2 rounded"
-                  ></div>
+                  <div class="col s7 mt-1 p-1">
+                    <div
+                      id="citySummary"
+                      class="col s12 grey lighten-2 rounded"
+                    ></div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="row">
-            <div class="col s7 z-depth-1 rounded" id="map"></div>
+            <div class="row">
+              <div class="col s7 z-depth-1 rounded" id="map"></div>
+            </div>
           </div>
         </div>
+        </div>
       </div>
-    </div>
+      <!-- Footer -->
+    </main>
 
-  <!-- Compiled and minified JavaScript -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  <script src="./Assets/script.js"></script>
-</body>
+    <p class="center-align grey-text" id="footer">© 2021 Team Kickflip</p>
 
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="./Assets/script.js"></script>
   </body>
 </html>
