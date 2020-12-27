@@ -32,7 +32,7 @@
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAznnjzx8FsrxeGNbrHctSdn1K8ma76x_A&callback=initAutocomplete&libraries=places&v=weekly"
       defer
     ></script>
-    <script src="./Assets/script.js"></script>
+
     <!-- AIzaSyAznnjzx8FsrxeGNbrHctSdn1K8ma76x_A -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- <link rel="stylesheet" href="./Assets/style.css" /> -->
@@ -49,16 +49,23 @@
           </div>
 
           <h6 class="center-align">City research made fun</h6>
-          <form>
-            <div class="input-field">
-              <input
-                id="pac-input"
-                class="controls"
-                type="text"
-                placeholder="Find a City"
-              />
-            </div>
-          </form>
+          <div id="landingSearchBar">
+            <form>
+              <div class="input-field">
+                <input
+                  id="pac-input"
+                  class="pac-input controls landingSearchBox"
+                  type="text"
+                  placeholder="Find a City"
+                />
+              </div>
+            </form>
+          </div>
+          <div class="col s2 center-align">
+            <a class="waves-effect waves-light btn" id="searchButton"
+              >get ctyFaktz</a
+            >
+          </div>
           <!-- end of landing page -->
         </div>
       </div>
@@ -78,7 +85,7 @@
                   <div class="input-field">
                     <input
                       id="pac-input"
-                      class="controls"
+                      class="pac-input controls mainSearchBox"
                       type="text"
                       placeholder="Find a City"
                     />
@@ -174,5 +181,6 @@
 
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="./Assets/script.js"></script>
   </body>
 </html>
