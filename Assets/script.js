@@ -149,7 +149,7 @@ function initAutocomplete() {
       $("#citySummary").append(summary);
     });
     //end of wiki api
-     terms = ["Starbucks", "resturant", "museum", "bowling alley"];
+     terms = ["Starbucks", "restaurant ", "museum", "bowling alley"];
 
     
   // });
@@ -175,7 +175,7 @@ function initAutocomplete() {
       var funFactAmounts = Math.round(pop / funFacts[index].amount);
       var funnyFacts = funFacts[index].description;
       $(`#funFact${x}`).append(funnyFacts);
-      $(`funAmount${x}`).append(funFactAmounts);
+      $(`#funAmount${x}`).append(funFactAmounts);
     }
     //end of funny facts
     });
@@ -190,9 +190,9 @@ function initAutocomplete() {
     });
     //end of open weather
 
-    for ( i = 0; i < terms.length; i++) {
-      // yelp api
-      const nameOfResponse = terms[i]
+    
+      // Yelp API: Starbucks
+
       var herokuApp = "https://cors-anywhere.herokuapp.com/";
       var settings = {
         async: true,
@@ -200,7 +200,7 @@ function initAutocomplete() {
         url:
           herokuApp +
           "https://api.yelp.com/v3/businesses/search?term=" +
-          terms[i] +
+          terms[0] +
           "&location=" +
           searchInput +
           "&limit=50&offset=51",
@@ -213,29 +213,135 @@ function initAutocomplete() {
       
       };
 
-      // function multiply(pop){
-      //   if ( pop < 100000) {
-      //     var mult =  100000 ;
-      //   } else {
-      //     mult = 10000;
-      //   };
-      //   return mult;
-      // }
-
-      // multiply()
 
       $.ajax(settings).then(function (response) {
         console.log(response);
         // console.log("total" + response.total);
         // console.log("population" + pop);
         var perCapita = Math.ceil((pop / response.total))  ;
-        console.log(perCapita);
-        var items = $("<p>").text("There is 1 " + nameOfResponse + " per " + perCapita + " people." );
-        $("#usefulFactoids").append(items);
+        // console.log(perCapita);
+        var items = $("<p>").text("There is 1 " + terms[0] + " per " + perCapita + " people." );
+        $("#usefulFact1").text("Starbucks") 
+        $("#usefulFactoids1").append(items)
       });
-    }
+    
+  // Yelp API: Restaurants
+  
+  var herokuApp = "https://cors-anywhere.herokuapp.com/";
+  var settings2 = {
+    async: true,
+    crossDomain: true,
+    url:
+      herokuApp +
+      "https://api.yelp.com/v3/businesses/search?term=" +
+      terms[1] +
+      "&location=" +
+      searchInput +
+      "&limit=50&offset=51",
+    method: "GET",
+    headers: {
+      Authorization:
+        "Bearer vvvcCtcJU8SYfZfJOTtjqBoJWMEil9uycqIhOZ29UVDqHxQezCjKDUbSCkeAwmsrX4sRpOZffUZihfpWj08qre6NrhPhTeVzhBOhHjNcjDN2XHLYFvPVcgvDl5TZX3Yx",
+      // "Access-Control-Allow-Origin": "*"
+    },
+  
+  };
+
+  $.ajax(settings2).then(function (response) {
+    console.log(response);
+    // console.log("total" + response.total);
+    // console.log("population" + pop);
+    var perCapita = Math.ceil((pop / response.total))  ;
+    // console.log(perCapita);
+    var items1 = $("<p>").text("There is 1 " + terms[1] + " per " + perCapita + " people." );
+    $("#usefulFact2").text("Restaurants") 
+    $("#usefulFactoids2").append(items1)
   });
+
+// Yelp API: Museums
+
+  var herokuApp = "https://cors-anywhere.herokuapp.com/";
+  var settings3 = {
+    async: true,
+    crossDomain: true,
+    url:
+      herokuApp +
+      "https://api.yelp.com/v3/businesses/search?term=" +
+      terms[2] +
+      "&location=" +
+      searchInput +
+      "&limit=50&offset=51",
+    method: "GET",
+    headers: {
+      Authorization:
+        "Bearer vvvcCtcJU8SYfZfJOTtjqBoJWMEil9uycqIhOZ29UVDqHxQezCjKDUbSCkeAwmsrX4sRpOZffUZihfpWj08qre6NrhPhTeVzhBOhHjNcjDN2XHLYFvPVcgvDl5TZX3Yx",
+      // "Access-Control-Allow-Origin": "*"
+    },
+  
+  };
+
+  $.ajax(settings3).then(function (response) {
+    console.log(response);
+    // console.log("total" + response.total);
+    // console.log("population" + pop);
+    var perCapita = Math.ceil((pop / response.total))  ;
+    // console.log(perCapita);
+    var items2 = $("<p>").text("There is 1 " + terms[2] + " per " + perCapita + " people." );
+    $("#usefulFact3").text("Museums") 
+    $("#usefulFactoids3").append(items2)
+  });
+
+// Yelp API: Bowling Alleys
+
+  var herokuApp = "https://cors-anywhere.herokuapp.com/";
+  var settings4 = {
+    async: true,
+    crossDomain: true,
+    url:
+      herokuApp +
+      "https://api.yelp.com/v3/businesses/search?term=" +
+      terms[3] +
+      "&location=" +
+      searchInput +
+      "&limit=50&offset=51",
+    method: "GET",
+    headers: {
+      Authorization:
+        "Bearer vvvcCtcJU8SYfZfJOTtjqBoJWMEil9uycqIhOZ29UVDqHxQezCjKDUbSCkeAwmsrX4sRpOZffUZihfpWj08qre6NrhPhTeVzhBOhHjNcjDN2XHLYFvPVcgvDl5TZX3Yx",
+      // "Access-Control-Allow-Origin": "*"
+    },
+  
+  };
+
+  $.ajax(settings4).then(function (response) {
+    console.log(response);
+    // console.log("total" + response.total);
+    // console.log("population" + pop);
+    var perCapita = Math.ceil((pop / response.total))  ;
+    // console.log(perCapita);
+    var items3 = $("<p>").text("There is 1 " + terms[3] + " per " + perCapita + " people." );
+    $("#usefulFact4").text("Bowling Alleys") 
+    $("#usefulFactoids4").append(items3)
+  });
+
+});
+
 }
+
+$("#pac-input").keypress(function(event) { 
+  if (event.key == "Enter") { 
+      $("#searchButton").click() } 
+}); 
+
+$("#searchButton").click(function(){
+  initAutocomplete();
+})
+    
+    
+   
+    
+  
+
 
 //data api
 
