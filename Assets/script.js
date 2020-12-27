@@ -123,7 +123,9 @@ function initAutocomplete() {
     const bounds = new google.maps.LatLngBounds();
 
     //create city name element
-    var cityName = $("<h3>").text(places[0].formatted_address);
+    var cityName = $("<h4>")
+      .text(places[0].formatted_address)
+      .addClass("bold-text mt-1");
 
     //append city name to name div
     $("#cityDetails").append(cityName);

@@ -27,10 +27,11 @@ body {
   padding-left: 6px;
 }
 #citySummary {
-  min-height: 150px;
+  min-height: 170px;
 }
 #logo {
   font-size: 3.1rem;
+  margin-top: 2px;
 }
 #mainNav {
   height: 67px;
@@ -127,9 +128,13 @@ h3 {
   padding-top: 0px;
   padding-left: 19px;
 }
+.bold-text {
+  font-weight: bold;
+}
 
 .divider {
   margin-top: -9px !important;
+  margin-bottom: -4px;
 }
 
 .btn {
