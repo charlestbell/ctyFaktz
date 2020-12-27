@@ -142,7 +142,7 @@ function initAutocomplete() {
         url:
           herokuApp +
           "https://api.yelp.com/v3/businesses/search?term=" +
-          terms[i] +
+          terms[0] +
           "&location=" +
           searchInput +
           "&limit=50&offset=51",
@@ -163,40 +163,28 @@ function initAutocomplete() {
         var items = $("<p>").text(nameOfResponse+ " per capita: " + perCapita);
         $("#usefulFactoids").append(items);
       });
+    
     }
-  });
-}
+  }
+  )}
 
-//data api
 
-//     var newtag = $("<h1>").text(resp.geonames[0].summary);
-//         $("h1").append(newtag);
-
-// const settings = {
-//   async: true,
-//   crossDomain: true,
-//   url: "https://world-geo-data.p.rapidapi.com/cities/8096217",
-//   method: "GET",
-//   headers: {
-//     "x-rapidapi-key": "7d0f311c39msh58381986eafbd8fp19ed1djsnfeb535bffdf7",
-//     "x-rapidapi-host": "world-geo-data.p.rapidapi.com",
-//   },
-// };
-// $.ajax(settings).done(function (response) {
-//   console.log(response);
-//   var newtag = $("<h1>").text(response.population);
-//   $("h1").append(newtag);
-// });
-let heroku = "https://cors-anywhere.herokuapp.com/";
-let queryURL =
-  "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=restaurants+in+sydney&inputtype=textquery&fields=photos,formatted_address,name,opening_hours,rating&locationbias=circle:2000@47.6918452,-122.2226413&key=AIzaSyBxxikd5sBYySsC4ExQM_Y1plVzBP7Ljbk";
-$.ajax({
-  url: heroku + queryURL,
-  method: "GET",
-  dataType: "json",
-}).then(function (response) {
-  //   console.log("places sydney");
-  //   console.log(response);
+$("form").submit(function (e) {
+  e.preventDefault();
 });
+
+$("form").keypress(function(event) { 
+  if (event.key == "Enter") { 
+      $("#searchButton").click() } 
+}); 
+
+$("#searchButton").click(function(){
+  initAutocomplete();
+})
+    
+    
+   
+    
+  
 
 
