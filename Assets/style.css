@@ -1,11 +1,3 @@
-@font-face {
-  font-family: "gilroyextrabold";
-  src: url("./fontGilroyExtraBold/gilroy-extrabold-webfont.woff2")
-      format("woff2"),
-    url("./fontGilroyExtraBold/gilroy-extrabold-webfont.woff") format("woff");
-  font-weight: normal;
-  font-style: normal;
-}
 /* Optional: Makes the sample page fill the window. */
 html,
 body {
@@ -32,17 +24,13 @@ body {
 #logo {
   font-size: 3.1rem;
   margin-top: 2px;
+  padding-left: 6px;
+  font-family: "Bangers", cursive;
 }
 #mainNav {
   height: 67px;
 }
 /* Optional: Makes the sample page fill the window. */
-h3 {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  font-family: "gilroyextrabold"; !important
-}
 
 #description {
   font-family: Roboto;
@@ -189,8 +177,4 @@ h3 {
 }
 .pr-2 {
   padding-right: 2rem;
-}
-#logo {
-  font-family: "Bangers", cursive;
-  padding-left: 10px;
 }
