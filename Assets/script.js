@@ -102,6 +102,8 @@ function initAutocomplete() {
   // Listen for the event fired when the user selects a prediction and retrieve
   // more details for that place.
   searchBox.addListener("places_changed", () => {
+    $(".progress").removeClass("hide"); //Show Loading Bar
+
     const places = searchBox.getPlaces();
 
     if (places.length == 0) {
@@ -241,6 +243,7 @@ function initAutocomplete() {
           "There is 1 " + nameOfResponse + " per " + perCapita + " people.";
         $(`#usefulFactoids${x}`).empty();
         $(`#usefulFactoids${x}`).append(items);
+        $(".progress").addClass("hide"); //Hide Loading Bar
       });
     }
   });
