@@ -239,6 +239,7 @@ function initAutocomplete() {
 
         var items =
           "There is 1 " + nameOfResponse + " per " + perCapita + " people.";
+        $(`#usefulFactoids${x}`).empty();
         $(`#usefulFactoids${x}`).append(items);
       });
     }
