@@ -22,10 +22,12 @@ body {
   min-height: 170px;
 }
 #logo {
+  position:relative;
   font-size: 3.1rem;
   margin-top: 2px;
   padding-left: 6px;
   font-family: "Bangers", cursive;
+  float: inline-start;
 }
 #mainNav {
   height: 67px;
@@ -88,12 +90,13 @@ body {
 #pac-input {
   background-color: #fff;
   font-family: Roboto;
-  font-size: 15px;
-  font-weight: 300;
+  font-size: 24px;
+  font-weight: 400;
 
   padding: 0 15px 0 13px;
-  text-overflow: ellipsis;
+  text-overflow: auto;
   width: 95%;
+  margin: 12px 14px 9px 38px;
 }
 
 #pac-input:focus {
