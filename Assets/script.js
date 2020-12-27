@@ -132,7 +132,19 @@ function initAutocomplete() {
   // Listen for the event fired when the user selects a prediction and retrieve
   // more details for that place.
   searchBox.addListener("places_changed", () => {
+    // Hide the landing page and reveal the search page
+    $(".landingSearchBox").removeAttr("id");
+    if (!$("#landingPage").hasClass("hide")) {
+      console.log("the landing page was visible");
+      $("#landingPage").addClass("hide");
+    }
+    $("#searchPage").removeClass("hide");
     $(".progress").removeClass("hide"); //Show Loading Bar
+    if (!$(".landingSearchBox").attr("id")) {
+      $("#landingSearchBox").empty();
+      initAutocomplete();
+      console.log("re-initiated");
+    }
 
     const places = searchBox.getPlaces();
 
@@ -298,10 +310,6 @@ $("form").keypress(function (event) {
   if (event.key == "Enter") {
     $("#searchButton").click();
   }
-});
-
-$("#searchButton").click(function () {
-  initAutocomplete();
 });
 
 //Google places api | Need to look into this to see if we can pull pictures from it
