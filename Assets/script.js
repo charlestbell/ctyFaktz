@@ -8,45 +8,71 @@ var usedFacts = [];
 var funFacts = [
   {
     description: "Kim's Convenience Stores",
-    amount: 100,
+    amount: 8.5,
   },
   {
     description: "Friendly neighborhood Spider men",
-    amount: 100,
+    amount: 20,
   },
   {
     description: "It clowns hiding in storm drains",
-    amount: 100,
+    amount: 8,
   },
   {
     description: "Street rats",
-    amount: 100,
+    amount: 2,
   },
   {
     description: "Scenic overlooks for parking",
-    amount: 100,
+    amount: 11.25,
   },
   {
     description: "Sketchy street meat carts",
-    amount: 100,
+    amount: 10.75,
   },
   {
     description: "Disney Princesses",
-    amount: 100,
+    amount: 12,
   },
   {
     description: "Autobots in disguise",
-    amount: 100,
+    amount: 9,
   },
   {
     description: "Mutant Ninja Turtles in Sewers",
-    amount: 100,
+    amount: 15,
   },
   {
     description: "Mutants",
-    amount: 100,
+    amount: 1.5,
   },
 ];
+//Function to determine the fun fact amount based of of population total
+function amount(population, index) {
+  console.log(funFacts[index].description);
+  var amount;
+  if (population < 50000) amount = funFacts[index].amount * 100;
+  else if (population > 50000 && population < 150000)
+    amount = funFacts[index].amount * 200;
+  else if (population > 150000 && population < 250000)
+    amount = funFacts[index].amount * 300;
+  else if (population > 250000 && population < 350000)
+    amount = funFacts[index].amount * 400;
+  else if (population > 350000 && population < 450000)
+    amount = funFacts[index].amount * 500;
+  else if (population > 450000 && population < 550000)
+    amount = funFacts[index].amount * 600;
+  else if (population > 550000 && population < 650000)
+    amount = funFacts[index].amount * 700;
+  else if (population > 650000 && population < 750000)
+    amount = funFacts[index].amount * 800;
+  else if (population > 750000 && population < 850000)
+    amount = funFacts[index].amount * 90;
+  else amount = funFacts[index].amount * 10000;
+
+  console.log(amount);
+  return amount;
+}
 
 //Random number genorator to get random number for funny facts
 //function also checks if random number has already been generated in current sequence
@@ -56,13 +82,13 @@ function getrando() {
     //If used fact array is empty push random number to array
     usedFacts.push(rando);
   } else {
-    $.each(usedFacts, function (indexInArray) {
-      //Checks if random number exists in array
-      if (indexInArray === rando) {
+    for (var x = 0; x < usedFacts.length; x++) {
+      if (usedFacts[x] === rando) {
         getrando();
-      } //if number has already been called, get new number
-    });
+      }
+    }
   }
+  usedFacts.push(rando);
   return rando;
 }
 //beginning of Google maps API
@@ -175,7 +201,6 @@ function initAutocomplete() {
       method: "GET",
     };
     $.ajax(geoSettings).then(function (resp) {
- 
       //create sumamry element
       var summary = $("<p>").text(resp.geonames[0].summary);
       $("#citySummary").append(summary);
@@ -195,10 +220,12 @@ function initAutocomplete() {
       $("#cityDetails").append(population);
 
       //Funny facts
-      for (var x = 0; x < 3; x++) {
-        
+      for (var x = 0; x < 4; x++) {
+        $(`#funFact${x}`).empty();
+        $(`#funAmount${x}`).empty();
+
         var index = getrando(); //Gets random number that has not been called
-        var funFactAmounts = Math.round(pop / funFacts[index].amount);
+        var funFactAmounts = Math.round(pop / amount(pop, index));
         var funnyFacts = funFacts[index].description; //gets fun fact description from array randomly
         $(`#funFact${x}`).append(funnyFacts);
         $(`#funAmount${x}`).append(funFactAmounts);
@@ -208,11 +235,18 @@ function initAutocomplete() {
     //end os open weather api call
 
     //Array which contains search parameters for yelp api call
-    terms = ["Starbucks", "resturant", "museum", "bowling alley"];
+    terms = [
+      "Starbucks",
+      "resturant",
+      "museum",
+      "bowling alley",
+      "park",
+      "McDonalds",
+    ];
 
     //For loop that calls the yelp api
     //loop runs for each element in terms array
-    for (i = 0; i < terms.length; i++) {
+    for (i = 0; i < terms.length + 1; i++) {
       // yelp api
       const nameOfResponse = terms[i];
       const x = i;
@@ -235,9 +269,11 @@ function initAutocomplete() {
         },
       };
       $.ajax(settings).then(function (response) {
+        $(`#usefulFactoids${x}`).empty();
         var perCapita = Math.ceil(pop / response.total);
 
-        var items = "There is 1 " + nameOfResponse + " per " + perCapita + " people.";
+        var items =
+          "There is 1 " + nameOfResponse + " per " + perCapita + " people.";
         $(`#usefulFactoids${x}`).append(items);
       });
     }
@@ -246,11 +282,11 @@ function initAutocomplete() {
 
 //Google places api | Need to look into this to see if we can pull pictures from it
 //Currently not in use
-let heroku = "https://cors-anywhere.herokuapp.com/";
-let queryURL =
-  "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=restaurants+in+sydney&inputtype=textquery&fields=photos,formatted_address,name,opening_hours,rating&locationbias=circle:2000@47.6918452,-122.2226413&key=AIzaSyBxxikd5sBYySsC4ExQM_Y1plVzBP7Ljbk";
-$.ajax({
-  url: heroku + queryURL,
-  method: "GET",
-  dataType: "json",
-}).then(function (response) {});
+// let heroku = "https://cors-anywhere.herokuapp.com/";
+// let queryURL =
+//   "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=restaurants+in+sydney&inputtype=textquery&fields=photos,formatted_address,name,opening_hours,rating&locationbias=circle:2000@47.6918452,-122.2226413&key=AIzaSyBxxikd5sBYySsC4ExQM_Y1plVzBP7Ljbk";
+// $.ajax({
+//   url: heroku + queryURL,
+//   method: "GET",
+//   dataType: "json",
+// }).then(function (response) {});
