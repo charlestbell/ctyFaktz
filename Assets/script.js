@@ -182,6 +182,7 @@ function initAutocomplete() {
 
     //Stores the user input in a variable for later use
     searchInput = places[0].name;
+    $(".cityName").text(searchInput);
 
     places.forEach((place) => {
       if (!place.geometry) {
@@ -299,8 +300,7 @@ function initAutocomplete() {
         $(`#usefulFactoids${x}`).empty();
         var perCapita = Math.ceil(pop / response.total);
 
-        var items =
-          "There is 1 " + nameOfResponse + " per " + perCapita + " people.";
+        var items = "A " + nameOfResponse + " every " + perCapita + " people.";
         $(`#usefulFactoids${x}`).append(items);
         $(".progress").addClass("hide"); //Hide Loading Bar
       });
