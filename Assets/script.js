@@ -15,7 +15,7 @@ var funFacts = [
     amount: 20,
   },
   {
-    description: "It clowns hiding in storm drains",
+    description: "'IT' clowns hiding in storm drains",
     amount: 8,
   },
   {
