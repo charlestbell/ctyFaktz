@@ -8,69 +8,69 @@ var usedFacts = [];
 var funFacts = [
   {
     description: "Kim's Convenience Stores",
-    amount: 8.5,
+    amount: 0.000000645677865,
   },
   {
     description: "Friendly neighborhood Spider men",
-    amount: 20,
+    amount: 0.000000532345,
   },
   {
     description: "'IT' clowns hiding in storm drains",
-    amount: 8,
+    amount: 0.0000002,
   },
   {
-    description: "Street rats",
-    amount: 2,
+    description: "Rodents Of Unusal Size",
+    amount: 0.234567,
   },
   {
-    description: "Scenic overlooks for parking",
-    amount: 11.25,
+    description: "Dudes in long jackets selling fake watches",
+    amount: 0.00003499,
   },
   {
     description: "Sketchy street meat carts",
-    amount: 10.75,
+    amount: 0.00088334,
   },
   {
-    description: "Disney Princesses",
-    amount: 12,
+    description: "Portals to Narnia",
+    amount: 0.000001445,
   },
   {
     description: "Autobots in disguise",
-    amount: 9,
+    amount: 0.00000087234,
   },
   {
     description: "Mutant Ninja Turtles in Sewers",
-    amount: 15,
+    amount: 0.00000493,
   },
   {
-    description: "Mutants",
-    amount: 1.5,
+    description: "Channing Tatems pretentending to be in high shool",
+    amount: 0.0000007839,
   },
 ];
 //Function to determine the fun fact amount based of of population total
-function amount(population, index) {
-  var amount;
-  if (population < 50000) amount = funFacts[index].amount * 100;
-  else if (population > 50000 && population < 150000)
-    amount = funFacts[index].amount * 200;
-  else if (population > 150000 && population < 250000)
-    amount = funFacts[index].amount * 300;
-  else if (population > 250000 && population < 350000)
-    amount = funFacts[index].amount * 400;
-  else if (population > 350000 && population < 450000)
-    amount = funFacts[index].amount * 500;
-  else if (population > 450000 && population < 550000)
-    amount = funFacts[index].amount * 600;
-  else if (population > 550000 && population < 650000)
-    amount = funFacts[index].amount * 700;
-  else if (population > 650000 && population < 750000)
-    amount = funFacts[index].amount * 800;
-  else if (population > 750000 && population < 850000)
-    amount = funFacts[index].amount * 90;
-  else amount = funFacts[index].amount * 10000;
+// function amount(population, index) {
+//   var amount;
+//   if (population < 50000) amount = funFacts[index].amount * 100;
+//   else if (population > 50000 && population < 150000)
+//     amount = funFacts[index].amount * 200;
+//   else if (population > 150000 && population < 250000)
+//     amount = funFacts[index].amount * 300;
+//   else if (population > 250000 && population < 350000)
+//     amount = funFacts[index].amount * 400;
+//   else if (population > 350000 && population < 450000)
+//     amount = funFacts[index].amount * 500;
+//   else if (population > 450000 && population < 550000)
+//     amount = funFacts[index].amount * 600;
+//   else if (population > 550000 && population < 650000)
+//     amount = funFacts[index].amount * 700;
+//   else if (population > 650000 && population < 750000)
+//     amount = funFacts[index].amount * 800;
+//   else if (population > 750000 && population < 850000)
+//     amount = funFacts[index].amount * 90;
+//   else amount = funFacts[index].amount * 10000;
 
-  return amount;
-}
+//   return amount;
+// }
 
 //Random number genorator to get random number for funny facts
 //function also checks if random number has already been generated in current sequence
@@ -247,7 +247,12 @@ function initAutocomplete() {
 
         var index = getrando(); //Gets random number that has not been called
 
-        var funFactAmounts = Math.round(pop / amount(pop, index));
+        let funFactAmount = pop * funFacts[index].amount;
+        if (funFactAmount < 1) {
+          funFactAmount = 1;
+        }
+
+        var funFactAmounts = Math.round(funFactAmount);
         var funnyFacts = funFacts[index].description; //gets fun fact description from array randomly
         $(`#funFact${x}`).append(funnyFacts);
         $(`#funAmount${x}`).append(funFactAmounts);
@@ -306,11 +311,11 @@ $("form").submit(function (e) {
   e.preventDefault();
 });
 
-$("form").keypress(function (event) {
-  if (event.key == "Enter") {
-    $("#searchButton").click();
-  }
-});
+// $("form").keypress(function (event) {
+//   if (event.key == "Enter") {
+//     $("#searchButton").click();
+//   }
+// });
 
 //Google places api | Need to look into this to see if we can pull pictures from it
 //Currently not in use
