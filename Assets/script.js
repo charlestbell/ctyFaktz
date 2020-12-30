@@ -47,30 +47,6 @@ var funFacts = [
     amount: 0.0000007839,
   },
 ];
-//Function to determine the fun fact amount based of of population total
-// function amount(population, index) {
-//   var amount;
-//   if (population < 50000) amount = funFacts[index].amount * 100;
-//   else if (population > 50000 && population < 150000)
-//     amount = funFacts[index].amount * 200;
-//   else if (population > 150000 && population < 250000)
-//     amount = funFacts[index].amount * 300;
-//   else if (population > 250000 && population < 350000)
-//     amount = funFacts[index].amount * 400;
-//   else if (population > 350000 && population < 450000)
-//     amount = funFacts[index].amount * 500;
-//   else if (population > 450000 && population < 550000)
-//     amount = funFacts[index].amount * 600;
-//   else if (population > 550000 && population < 650000)
-//     amount = funFacts[index].amount * 700;
-//   else if (population > 650000 && population < 750000)
-//     amount = funFacts[index].amount * 800;
-//   else if (population > 750000 && population < 850000)
-//     amount = funFacts[index].amount * 90;
-//   else amount = funFacts[index].amount * 10000;
-
-//   return amount;
-// }
 
 //Random number genorator to get random number for funny facts
 //function also checks if random number has already been generated in current sequence
@@ -133,17 +109,20 @@ function initAutocomplete() {
   // more details for that place.
   searchBox.addListener("places_changed", () => {
     // Hide the landing page and reveal the search page
-    $(".landingSearchBox").removeAttr("id");
+    $(".mainSearchBox").removeAttr("id");
     if (!$("#landingPage").hasClass("hide")) {
-      console.log("the landing page was visible");
       $("#landingPage").addClass("hide");
+      // $(".landingSearchBox").removeAttr("id");
     }
+
     $("#searchPage").removeClass("hide");
+
     $(".progress").removeClass("hide"); //Show Loading Bar
+
     if (!$(".landingSearchBox").attr("id")) {
-      $("#landingSearchBox").empty();
+      $("#landingSearchCont").empty();
+
       initAutocomplete();
-      console.log("re-initiated");
     }
 
     const places = searchBox.getPlaces();
@@ -177,7 +156,7 @@ function initAutocomplete() {
     //Stores the user input in a variable for later use
     searchInput = places[0].name;
     $(".cityName").text(searchInput);
- 
+
     places.forEach((place) => {
       if (!place.geometry) {
         console.log("Returned place contains no geometry");
