@@ -147,7 +147,7 @@ function initAutocomplete() {
     $(".progress").removeClass("hide"); //Show Loading Bar
 
     if (!$(".landingSearchBox").attr("id")) {
-      $("#landingSearchBox").empty();
+      $("#landingSearchCont").empty();
       initAutocomplete();
       console.log("re-initiated");
     }
