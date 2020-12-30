@@ -7,6 +7,15 @@ body {
   min-height: 100vh;
   flex-direction: column;
 }
+html { 
+  background: url(city_background.jpg) no-repeat center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-position: top center;
+  
+}
 main {
   flex: 1 0 auto;
 }
@@ -93,8 +102,7 @@ main {
 }
 
 #searchButton {
-  padding-top: 0px;
-  padding-left: 19px;
+d
 }
 #copyright {
   left: 50%;
@@ -105,7 +113,7 @@ main {
 }
 
 .rounded {
-  border-radius: 4px;
+  border-radius: 4px !important;
 }
 .pac-card {
   margin: 10px 10px 0 0;
@@ -169,6 +177,16 @@ main {
 .mt-2 {
   margin-top: 2rem;
 }
+.mt-3 {
+  margin-top: 3rem;
+}
+.mt-4 {
+  margin-top: 4rem;
+}
+.mt-5 {
+  margin-top: 5rem;
+}
+
 /* Margin Left */
 .ml-1 {
   margin-left: 1rem;
