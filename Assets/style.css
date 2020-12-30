@@ -19,7 +19,10 @@ html {
 main {
   flex: 1 0 auto;
 }
-
+#searchFormEl {
+  display: inline-block;
+  width: 60%;
+}
 /* h5 {
   font-size: 2.2rem !important;
 } */
@@ -112,6 +115,9 @@ d
   min-height: 100vh;
 }
 
+#landingSearchCont {
+  text-align: center;
+}
 .rounded {
   border-radius: 4px !important;
 }
