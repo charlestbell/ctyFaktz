@@ -177,7 +177,7 @@ function initAutocomplete() {
     //Stores the user input in a variable for later use
     searchInput = places[0].name;
     $(".cityName").text(searchInput);
-
+ 
     places.forEach((place) => {
       if (!place.geometry) {
         console.log("Returned place contains no geometry");
