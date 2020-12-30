@@ -139,7 +139,6 @@ function initAutocomplete() {
     // Hide the landing page and reveal the search page
     $(".landingSearchBox").removeAttr("id");
     if (!$("#landingPage").hasClass("hide")) {
-      console.log("the landing page was visible");
       $("#landingPage").addClass("hide");
     }
     $("#searchPage").removeClass("hide");
@@ -149,7 +148,6 @@ function initAutocomplete() {
     if (!$(".landingSearchBox").attr("id")) {
       $("#landingSearchCont").empty();
       initAutocomplete();
-      console.log("re-initiated");
     }
 
     const places = searchBox.getPlaces();
