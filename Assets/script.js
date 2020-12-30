@@ -121,7 +121,6 @@ function initAutocomplete() {
 
     if (!$(".landingSearchBox").attr("id")) {
       $("#landingSearchCont").empty();
-
       initAutocomplete();
     }
 
