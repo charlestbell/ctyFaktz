@@ -5,14 +5,13 @@ body {
   margin: 0;
   padding: 0;
 }
-html { 
-  background: url(city_background.jpg) no-repeat center fixed; 
+html {
+  background: url(city_background.jpg) no-repeat center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
   background-position: top center;
-  
 }
 main {
   flex: 1 0 auto;
@@ -128,9 +127,9 @@ main {
   width: 345px;
 }
 
-#searchButton {
+/* #searchButton {
 d
-}
+} */
 #copyright {
   left: 50%;
   transform: translateX(-50%);

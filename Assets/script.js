@@ -3,6 +3,7 @@ var terms;
 var population;
 var pop;
 var usedFacts = [];
+var onLanding = true;
 
 //an array of objects that holds the funny fact description and the number accosiated with it.
 var funFacts = [
@@ -48,6 +49,16 @@ var funFacts = [
   },
 ];
 
+var inputBox = $("<input>")
+  .attr("id", "pac-input")
+  .addClass("pac-input controls landingSearchBox rounded ")
+  .attr("type", "text")
+  .attr("placeholder", "Find a City!")
+  .width("25%")
+  .css("margin-left", "38%")
+  .css("text-align", "center");
+
+$("#landingPage").append(inputBox);
 //Random number genorator to get random number for funny facts
 //function also checks if random number has already been generated in current sequence
 function getrando() {
@@ -71,6 +82,7 @@ function getrando() {
   usedFacts.push(rando);
   return rando;
 }
+
 //beginning of Google maps API
 // <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIwzALxUPNbatRBj3Xi1Uhp0fFzwWNBkE&libraries=places">
 function initAutocomplete() {
@@ -87,9 +99,10 @@ function initAutocomplete() {
   //  };
 
   // Create the search box and link it to the UI element.
-  const input = document.getElementById("pac-input");
+  var input = document.querySelector("#pac-input");
+
   //Search box without auto correct
-  const searchBox = new google.maps.places.SearchBox(input);
+  var searchBox = new google.maps.places.SearchBox(input);
 
   //Search box with auto correct
   // const searchBox = new google.maps.places.Autocomplete(input, options);
@@ -103,26 +116,27 @@ function initAutocomplete() {
   });
 
   let markers = [];
-  // var usedFacts = [];  //////////////////////////////\\\\\\\\\\
 
   // Listen for the event fired when the user selects a prediction and retrieve
   // more details for that place.
   searchBox.addListener("places_changed", () => {
     // Hide the landing page and reveal the search page
-    $(".mainSearchBox").removeAttr("id");
+    // $(".mainSearchBox").removeAttr("id");
     if (!$("#landingPage").hasClass("hide")) {
       $("#landingPage").addClass("hide");
-      // $(".landingSearchBox").removeAttr("id");
-    }
-
-    $("#searchPage").removeClass("hide");
-
-    $(".progress").removeClass("hide"); //Show Loading Bar
-
-    if (!$(".landingSearchBox").attr("id")) {
       $("#landingSearchCont").empty();
-      initAutocomplete();
+      $("#searchPage").removeClass("hide");
+      $(".progress").removeClass("hide"); //Show Loading Bar
     }
+    inputBox
+      .css("margin-left", "20px")
+      .css("text-align", "center")
+      .width("75%");
+    $("#searchBoxPage").append(inputBox);
+    // $(".landingSearchBox").removeAttr("id");
+    // if (!$(".landingSearchBox").attr("id")) {
+
+    // }
 
     const places = searchBox.getPlaces();
 
