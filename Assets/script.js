@@ -64,9 +64,9 @@ var inputBox = $("<input>")
   .attr("id", "pac-input")
   .attr("type", "text")
   .attr("placeholder", "Find a City!")
-  .addClass("pac-input controls landingSearchBox rounded center");
+  .addClass("pac-input controls landingSearchBox rounded");
 
-$("#landingPage").append(inputBox);
+$("#searchFormEl").append(inputBox);
 
 //Random number genorator to get random number for funny facts
 //function also checks if random number has already been generated in current sequence
