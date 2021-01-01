@@ -78,11 +78,10 @@ main {
   background-color: #fff;
   font-family: Roboto;
   font-size: 20px;
-  font-weight: 300;
+  font-weight: 400;
   margin-top: 10px;
   padding: 0 15px 0 13px;
   text-overflow: ellipsis;
-  width: 95%;
 }
 
 #citySummary {
@@ -243,6 +242,19 @@ main {
 }
 .ml-2 {
   margin-left: 2rem;
+}
+/* Margin Right */
+.mr-1 {
+  margin-right: 1rem !important;
+}
+.mr-2 {
+  margin-right: 2rem !important;
+}
+.mr-3 {
+  margin-right: 3rem !important;
+}
+.mr-4 {
+  margin-right: 4rem !important;
 }
 /* Padding */
 .p-1 {
