@@ -107,13 +107,26 @@ main {
   background-color: whitesmoke;
   font-family: Roboto;
   font-size: 30px;
-  letter-spacing: 10px;
+  letter-spacing: 8px;
   font-weight: 300;
-  margin-left: 35.5rem;
   text-align: center;
   padding: 0 15px 0 13px;
   text-overflow: ellipsis;
+  /* width: 25%; */
+}
+.center #landingPage {
   width: 25%;
+  display: grid;
+  place-items: center;
+  justify-content: center;
+}
+
+.box {
+  flex: 1 1 150px;
+}
+
+#citySummary {
+  font-size: large;
 }
 
 #pac-input:focus {
@@ -123,6 +136,8 @@ main {
 #pac-input:hover {
   border: solid;
   border-color: #4d90fe;
+}
+.onSearchPage:hover {
 }
 #title {
   color: #fff;
