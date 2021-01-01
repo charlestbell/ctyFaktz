@@ -137,11 +137,9 @@ function initAutocomplete() {
 
     //Reposition searchBox element and append it to new location on search page
     inputBox
-      .css("margin-left", "20px")
-      .css("margin-top", "13px")
-      .css("text-align", "center")
-      .width("75%")
-      .addClass("onSearchPage")
+      .attr("id", "pac-input")
+      .attr("type", "text")
+      .addClass("onSearchPage pac-input controls mainSearchBox rounded")
       .attr("placeholder", "Find a City!"); //reset the search bar to the placeholder text
 
     $("#searchBoxPage").append(inputBox);
