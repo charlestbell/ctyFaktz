@@ -53,11 +53,8 @@ var inputBox = $("<input>")
   .attr("id", "pac-input")
   .addClass("pac-input controls landingSearchBox rounded ")
   .attr("type", "text")
-  .attr("placeholder", "Find a City!")
-  .width("25%")
-  .css("margin-left", "38%")
-  .css("text-align", "center");
-
+  .attr("placeholder", "Find a City!");
+// .width("25%")
 $("#landingPage").append(inputBox);
 //Random number genorator to get random number for funny facts
 //function also checks if random number has already been generated in current sequence
@@ -130,9 +127,13 @@ function initAutocomplete() {
     }
     inputBox
       .css("margin-left", "20px")
+      .css("margin-top", "13px")
       .css("text-align", "center")
-      .width("75%");
+      .width("75%")
+      .attr("placeholder", "Find a City!");
+
     $("#searchBoxPage").append(inputBox);
+    $("#searchBoxPage").placeholder = "Find a new City!";
     // $(".landingSearchBox").removeAttr("id");
     // if (!$(".landingSearchBox").attr("id")) {
 

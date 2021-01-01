@@ -83,6 +83,9 @@ main {
   font-family: Roboto;
   padding-top: 20px;
 }
+.pac-item-query {
+  font-size: large;
+}
 
 #pac-container {
   padding-bottom: 12px;
@@ -101,20 +104,26 @@ main {
 }
 
 #pac-input {
-  background-color: #fff;
+  background-color: whitesmoke;
   font-family: Roboto;
-  font-size: 15px;
+  font-size: 30px;
+  letter-spacing: 10px;
   font-weight: 300;
-
+  margin-left: 35.5rem;
+  text-align: center;
   padding: 0 15px 0 13px;
   text-overflow: ellipsis;
-  width: 95%;
+  width: 25%;
 }
 
 #pac-input:focus {
   border-color: #4d90fe;
 }
 
+#pac-input:hover {
+  border: solid;
+  border-color: #4d90fe;
+}
 #title {
   color: #fff;
   background-color: #4d90fe;
