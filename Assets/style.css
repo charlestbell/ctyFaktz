@@ -7,14 +7,13 @@ body {
   min-height: 100vh;
   flex-direction: column;
 }
-html { 
-  background: url(city_background.jpg) no-repeat center fixed; 
+html {
+  background: url(city_background.jpg) no-repeat center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
   background-position: top center;
-  
 }
 main {
   flex: 1 0 auto;
@@ -104,9 +103,6 @@ main {
   width: 345px;
 }
 
-#searchButton {
-d
-}
 #copyright {
   left: 50%;
   transform: translateX(-50%);
@@ -133,7 +129,6 @@ d
   padding-top: 20px;
 }
 .pac-controls {
-  /* display: inline-block; */
   padding: 5px 11px;
 }
 
