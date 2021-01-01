@@ -34,6 +34,8 @@
     <!-- AIzaSyAznnjzx8FsrxeGNbrHctSdn1K8ma76x_A -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- <link rel="stylesheet" href="./Assets/style.css" /> -->
+
+    <title>CTYFAKTZ - Research made fun</title>
   </head>
   <body>
    
@@ -50,19 +52,19 @@
           <h6 class="center-align">City research made fun</h6>
           <div id="landingSearchCont">
             <form id="searchFormEl">
-              <div class="input-field mt-2 ">
-                <input
+              <div class="input-field mt-2 " id ="landingPage">
+                <!-- <input
                   id="pac-input"
                   class="pac-input controls landingSearchBox rounded"
                   type="text"
                   placeholder="Find a City"
-                />
+                /> -->
               </div>
             </form>
           </div>
          
           </div>
-          <!-- end of landing page -->
+          <!-- end of landing page -->  
         </div>
       </div>
       <div id="searchPage" class="hide">
@@ -78,13 +80,13 @@
               </div>
               <div class="col s10">
                 <form>
-                  <div class="input-field">
-                    <input
+                  <div class="input-field" id="searchBoxPage">
+                    <!-- <input
                       id="pac-input"
                       class="pac-input controls mainSearchBox rounded"
                       type="text"
                       placeholder="Find a City"
-                    />
+                    /> -->
                   </div>
                 </form>
               </div>
@@ -98,41 +100,43 @@
           <!-- Useful Factoids -->
           <div class="col s5">
             <div class="col s12 grey lighten-3 z-depth-1 mb-1 rounded">
-              <div>
+              <div class="box" id="usefulFacts">
                 <p class="grey-text text-darken-1"><span class="cityName" ></span> has</p>
+        
                 <div class="divider"></div>
                 <div class="section">
                   <h6 class="bold-text" id="usefulFactoids0"></h6>
-                  <!-- <p>Stuff</p> -->
+      
                 </div>
                 <div class="divider"></div>
                 <div class="section">
                   <h6 class="bold-text" id="usefulFactoids1"></h6>
-                  <!-- <p>Stuff</p> -->
+             
                 </div>
                 <div class="divider"></div>
                 <div class="section">
                   <h6 class="bold-text" id="usefulFactoids2"></h6>
-                  <!-- <p>Stuff</p> -->
+                  
                 </div>
                 <div class="divider"></div>
                 <div class="section">
                   <h6 class="bold-text" id="usefulFactoids3"></h6>
-                  <!-- <p>Stuff</p> -->
+              
                 </div>
                 <div class="divider"></div>
                 <div class="section">
                   <h6 class="bold-text" id="usefulFactoids4"></h6>
-                  <!-- <p>Stuff</p> -->
+                  
                 </div>
                 <div class="divider"></div>
                 <div class="section">
                   <h6 class="bold-text" id="usefulFactoids5"></h6>
-                  <!-- <p>Stuff</p> -->
+                  
                 </div>
+              
               </div>
             </div>
-            <div class="col s12 grey lighten-3 z-depth-1 rounded">
+            <div class="col s12 grey lighten-3 z-depth-1 rounded box">
               <div id="funFactoids" class="">
                 <p class="grey-text text-darken-1">Fun Faktz about <span class="cityName"></span></p>
                 <div class="divider"></div>
@@ -160,7 +164,7 @@
             </div>
           
           <!-- City Bio Section -->
-          <div class="col s7">
+          <div class="col s7 box">
             <div class="mb-1 row">
               <div class="col s12 grey lighten-3 z-depth-1 rounded">
                 <div class="row">
@@ -181,7 +185,7 @@
               </div>
             </div>
             <div class="row">
-              <div class="col s7 z-depth-1 rounded mb-2" id="map"></div>
+              <div class="col s7 z-depth-1 rounded box mb-2" id="map"></div>
             </div>
           </div>
         </div>

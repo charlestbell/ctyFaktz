@@ -3,6 +3,17 @@ var terms;
 var population;
 var pop;
 var usedFacts = [];
+var onLanding = true;
+
+//Array which contains search parameters for yelp api call
+terms = [
+  "Starbucks",
+  "resturant",
+  "museum",
+  "bowling alley",
+  "park",
+  "McDonalds",
+];
 
 //an array of objects that holds the funny fact description and the number accosiated with it.
 var funFacts = [
@@ -47,30 +58,15 @@ var funFacts = [
     amount: 0.0000007839,
   },
 ];
-//Function to determine the fun fact amount based of of population total
-// function amount(population, index) {
-//   var amount;
-//   if (population < 50000) amount = funFacts[index].amount * 100;
-//   else if (population > 50000 && population < 150000)
-//     amount = funFacts[index].amount * 200;
-//   else if (population > 150000 && population < 250000)
-//     amount = funFacts[index].amount * 300;
-//   else if (population > 250000 && population < 350000)
-//     amount = funFacts[index].amount * 400;
-//   else if (population > 350000 && population < 450000)
-//     amount = funFacts[index].amount * 500;
-//   else if (population > 450000 && population < 550000)
-//     amount = funFacts[index].amount * 600;
-//   else if (population > 550000 && population < 650000)
-//     amount = funFacts[index].amount * 700;
-//   else if (population > 650000 && population < 750000)
-//     amount = funFacts[index].amount * 800;
-//   else if (population > 750000 && population < 850000)
-//     amount = funFacts[index].amount * 90;
-//   else amount = funFacts[index].amount * 10000;
 
-//   return amount;
-// }
+//Creates searchBox elemetn and appends it to the landing page
+var inputBox = $("<input>")
+  .attr("id", "pac-input")
+  .attr("type", "text")
+  .attr("placeholder", "Find a City!")
+  .addClass("pac-input controls landingSearchBox rounded center");
+
+$("#landingPage").append(inputBox);
 
 //Random number genorator to get random number for funny facts
 //function also checks if random number has already been generated in current sequence
@@ -86,13 +82,11 @@ function getrando() {
     } else {
       for (var x = 0; x < usedFacts.length; x++) {
         if (usedFacts[x] === rando) {
-          console.log(`Issue found`);
           match = true;
         }
       }
     }
   }
-  // console.log(usedFacts);
   usedFacts.push(rando);
   return rando;
 }
@@ -100,30 +94,27 @@ function getrando() {
 //beginning of Google maps API
 // <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIwzALxUPNbatRBj3Xi1Uhp0fFzwWNBkE&libraries=places">
 function initAutocomplete() {
-  // // Swap which input field is activated
-
   const map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: 33.973019, lng: -117.328236 }, //sets the location when app is opened
     zoom: 11, //zoom increases as number increases
     mapTypeId: "roadmap",
   });
 
+  /** 
   //Auto complete parameters which limits the search to cities
-  // var options = {
-  // types: ['(cities)'],
-  // componentRestrictions: {country: "us"} //sets the search to a specific country
-  //  };
+  var options = {
+  types: ['(cities)'],
+  componentRestrictions: {country: "us"} //sets the search to a specific country
+   };
+  //Search box with auto correct
+  const searchBox = new google.maps.places.Autocomplete(input, options);
+  */
 
   // Create the search box and link it to the UI element.
-  const input = document.getElementById("pac-input");
+  var input = document.querySelector("#pac-input");
+
   //Search box without auto correct
-  const searchBox = new google.maps.places.SearchBox(input);
-
-  //Search box with auto correct
-  // const searchBox = new google.maps.places.Autocomplete(input, options);
-
-  //attaches search bar to map
-  // map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+  var searchBox = new google.maps.places.SearchBox(input);
 
   // Bias the SearchBox results towards current map's viewport.
   map.addListener("bounds_changed", () => {
@@ -131,27 +122,34 @@ function initAutocomplete() {
   });
 
   let markers = [];
-  // var usedFacts = [];  //////////////////////////////\\\\\\\\\\
 
   // Listen for the event fired when the user selects a prediction and retrieve
   // more details for that place.
   searchBox.addListener("places_changed", () => {
     // Hide the landing page and reveal the search page
-    $(".landingSearchBox").removeAttr("id");
     if (!$("#landingPage").hasClass("hide")) {
-      $("#landingPage").addClass("hide");
-    }
-    $("#searchPage").removeClass("hide");
-
-    $(".progress").removeClass("hide"); //Show Loading Bar
-
-    if (!$(".landingSearchBox").attr("id")) {
+      //If landing page is not hidden
+      $("#landingPage").addClass("hide"); //Hide landing page
       $("#landingSearchCont").empty();
-      initAutocomplete();
-    }
+      $("#searchPage").removeClass("hide"); //Show search page
+      $(".progress").removeClass("hide"); //Show Loading Bar
+    } //End if
 
+    //Reposition searchBox element and append it to new location on search page
+    inputBox
+      .css("margin-left", "20px")
+      .css("margin-top", "13px")
+      .css("text-align", "center")
+      .width("75%")
+      .addClass("onSearchPage")
+      .attr("placeholder", "Find a City!"); //reset the search bar to the placeholder text
+
+    $("#searchBoxPage").append(inputBox);
+
+    //Sets places to search request
     const places = searchBox.getPlaces();
 
+    //if no results are found do nothing
     if (places.length == 0) {
       return;
     }
@@ -161,7 +159,7 @@ function initAutocomplete() {
       marker.setMap(null);
     });
 
-    markers = [];
+    markers = []; //Sets the array that contains markers to empty so that new locations can be added
     usedFacts = []; //Sets the array that contains the fun fact indexes that have bveen used to null or empty.
 
     $("#cityDetails").empty(); //Empties out element that contains the city name and population
@@ -220,14 +218,11 @@ function initAutocomplete() {
         "http://api.geonames.org/wikipediaSearchJSON?q=" +
         searchInput +
         "&maxRows=10&username=hunter7",
-      // url: "http://api.geonames.org/citiesJSON?north=44.1&south=-9.9&east=-22.4&west=55.2&lang=de&username=hunter7",
-      // url: "http://api.geonames.org/getJSON?geonameId=8096217&username=hunter7",//this is good alot of info but still need the geoname id
-      // url: "http://api.geonames.org/wikipediaBoundingBoxJSON?north=34.033481&south=33.907677&east=-117.54897&west=-117.615501&username=hunter7", //this gets the summary
       method: "GET",
     };
     $.ajax(geoSettings).then(function (resp) {
       //create sumamry element
-      var summary = $("<p>").text(resp.geonames[0].summary);
+      var summary = $("<p>").text(resp.geonames[0].summary); //font size set to large in css
       $("#citySummary").append(summary);
     });
     //end of wiki api
@@ -265,16 +260,6 @@ function initAutocomplete() {
     });
     //end os open weather api call
 
-    //Array which contains search parameters for yelp api call
-    terms = [
-      "Starbucks",
-      "resturant",
-      "museum",
-      "bowling alley",
-      "park",
-      "McDonalds",
-    ];
-
     //For loop that calls the yelp api
     //loop runs for each element in terms array
     for (i = 0; i < terms.length + 1; i++) {
@@ -302,7 +287,6 @@ function initAutocomplete() {
       $.ajax(settings).then(function (response) {
         $(`#usefulFactoids${x}`).empty();
         var perCapita = Math.ceil(pop / response.total);
-
         var items = "A " + nameOfResponse + " every " + perCapita + " people.";
         $(`#usefulFactoids${x}`).append(items);
         $(".progress").addClass("hide"); //Hide Loading Bar
@@ -325,9 +309,11 @@ $("form").submit(function (e) {
 //Currently not in use
 // let heroku = "https://cors-anywhere.herokuapp.com/";
 // let queryURL =
-//   "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=restaurants+in+sydney&inputtype=textquery&fields=photos,formatted_address,name,opening_hours,rating&locationbias=circle:2000@47.6918452,-122.2226413&key=AIzaSyBxxikd5sBYySsC4ExQM_Y1plVzBP7Ljbk";
+//   "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=sydney&inputtype=textquery&fields=photos,formatted_address,name,opening_hours,rating&locationbias=circle:2000@47.6918452,-122.2226413&key=AIzaSyBxxikd5sBYySsC4ExQM_Y1plVzBP7Ljbk";
 // $.ajax({
 //   url: heroku + queryURL,
 //   method: "GET",
 //   dataType: "json",
-// }).then(function (response) {});
+// }).then(function (response) {
+//   console.log(response);
+// });
