@@ -28,8 +28,9 @@ main {
 /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
 #map {
-  height: 60%;
-  position: absolute;
+  height: 600px;
+  position: inline block;
+  overflow: hidden;
 }
 #cityDetails:first-child {
   padding-top: 10px;
@@ -238,10 +239,10 @@ main {
 
 /* Margin Left */
 .ml-1 {
-  margin-left: 1rem;
+  margin-left: 1rem !important;
 }
 .ml-2 {
-  margin-left: 2rem;
+  margin-left: 2rem !important;
 }
 /* Margin Right */
 .mr-1 {
