@@ -35,52 +35,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- <link rel="stylesheet" href="./Assets/style.css" /> -->
 
-    <title>CTYFAKTZ - research made fun</title>
+    <title>CTYFAKTZ - Research made fun</title>
   </head>
   <body>
    
     <main>
       <div id="landingPage" class="">
-        <div class="container">
-          <h6 class="center-align mt-3">Welcome to</h6>
-          <div class="center-align">
-            <a href="" class="center-align brand-logo" id="logo"
-              ><span class="teal-text text-lighten-2">ctyFaktz</span></a
-            >
-          </div>
-
-          <h6 class="center-align">City research made fun</h6>
-          <div id="landingSearchCont">
-            <form id="searchFormEl">
-              <div class="input-field mt-2 " id ="landingPage">
-                <!-- <input
-                  id="pac-input"
-                  class="pac-input controls landingSearchBox rounded"
-                  type="text"
-                  placeholder="Find a City"
-                /> -->
-              </div>
-            </form>
-          </div>
+        <div class="row">
+          <div class="col s12  m10 offset-m1 l8 offset-l2 xl6 offset-xl3"> 
+            <h6 class="center-align mt-3">Welcome to</h6>
+            <div class="center-align">
+              <a href="" class="center-align brand-logo" id="logo"
+                ><span class="teal-text text-lighten-2">ctyFaktz</span></a
+              >
+            </div>
+  
+            <h6 class="center-align">City research made fun</h6>
+            <div id="landingSearchCont">
+              <form >
+                <div class="input-field mt-2 " id="searchFormEl">
+                  <!-- <input
+                    id="pac-input"
+                    class="pac-input controls landingSearchBox rounded"
+                    type="text"
+                    placeholder="Find a City"
+                  /> -->
+                </div>
+              </form>
+            </div></div>
+         
          
           </div>
           <!-- end of landing page -->  
         </div>
       </div>
       <div id="searchPage" class="hide">
-        <nav id="mainNav" class="mb-1 #ffecb3 amber lighten-3">
-          <div class="row">
+        <nav id="mainNav" class="mb-1">
+          <div class="row  #ffecb3 amber lighten-3">
             <div class="nav-wrapper">
-              <div class="col s2">
-                <a href="/index.html" class="brand-logo" id="logo"
+              <div class="col s12 m3 l2">
+                <a href="/index.html"  id="logo"
                   ><span id="logo" class="teal-text text-lighten-2"
                     >ctyFaktz</span
                   ></a
                 >
               </div>
-              <div class="col s10">
+              <div class="col s12 m8 l10">
                 <form>
-                  <div class="input-field" id="searchBoxPage">
+                  <div class=" ml-1 mr-3" id="searchBoxPage">
                     <!-- <input
                       id="pac-input"
                       class="pac-input controls mainSearchBox rounded"
@@ -96,11 +98,38 @@
         <div class="progress hide">
           <div class="indeterminate"></div>
         </div>
+        <!--Container-->
         <div class="row pr-2">
+            <!-- City Bio Section -->
+           <div class="col s12 m7 push-m5">
+            <class class="mb-1 row">
+              <div class="col s12 grey lighten-3 z-depth-1 rounded">
+                <div class="row">
+                  <div class="col s12 m5">
+                    <div>
+                      <p class="grey-text text-darken-1 rounded">About</p>
+                      <div class="divider"></div>
+                      <div id="cityDetails"></div>
+                    </div>
+                  </div>
+                  <div class="col s12 m7 mt-1 p-1">
+                    <div
+                      id="citySummary"
+                      class="col s12 grey lighten-2 rounded"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+            </class>
+            <div class="row mb-1">
+              <div class="col s12 z-depth-1 rounded mb-2 ml-1 mr-1" id="map"></div>
+          </div>
+            
+          </div>
           <!-- Useful Factoids -->
-          <div class="col s5">
+          <div class="col s12 m5 pull-m7">
             <div class="col s12 grey lighten-3 z-depth-1 mb-1 rounded">
-              <div class="box" id="usefulFacts">
+              <div id="usefulFacts">
                 <p class="grey-text text-darken-1"><span class="cityName" ></span> has</p>
         
                 <div class="divider"></div>
@@ -136,7 +165,7 @@
               
               </div>
             </div>
-            <div class="col s12 grey lighten-3 z-depth-1 rounded box">
+            <div class="col s12 grey lighten-3 z-depth-1 rounded">
               <div id="funFactoids" class="">
                 <p class="grey-text text-darken-1">Fun Faktz about <span class="cityName"></span></p>
                 <div class="divider"></div>
@@ -163,38 +192,14 @@
               </div>
             </div>
           
-          <!-- City Bio Section -->
-          <div class="col s7 box">
-            <div class="mb-1 row">
-              <div class="col s12 grey lighten-3 z-depth-1 rounded">
-                <div class="row">
-                  <div class="col s5">
-                    <div>
-                      <p class="grey-text text-darken-1">About</p>
-                      <div class="divider"></div>
-                      <div id="cityDetails"></div>
-                    </div>
-                  </div>
-                  <div class="col s7 mt-1 p-1">
-                    <div
-                      id="citySummary"
-                      class="col s12 grey lighten-2 rounded"
-                    ></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col s7 z-depth-1 rounded box" id="map"></div>
-            </div>
-          </div>
+         
         </div>
         </div>
       </div>
       <!-- Footer -->
     </main>
 
-    <p class="center-align " id="footer">© 2021 Team Kickflip</p>
+    <p class="center-align white-text" id="footer">© 2021 Team Kickflip</p>
   
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
