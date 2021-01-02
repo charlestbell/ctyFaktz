@@ -16,6 +16,7 @@ Search for a city and ctyFaktz will pull from multiple sources to display useful
 
 - City Facts are calculated live based on real population and yelp data.
 - Fun facts update live based on population
+- Mobile Responsiveness
 - A short city bio from wikipedia gives you peace of mind that you searched the right place
 - A landing page for some pizzazz
 - A reassuring loading bar while you wait
@@ -24,7 +25,6 @@ Search for a city and ctyFaktz will pull from multiple sources to display useful
 
 - Custom Per Capita search
 - % of McDonald's Ice Cream Machines working by city
-- Mobile Responsiveness
 
 ### Screenshots
 
