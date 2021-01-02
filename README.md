@@ -29,6 +29,11 @@ Search for a city and ctyFaktz will pull from multiple sources to display useful
 ### Screenshots
 
 Landing Page
+
 ![Screenshot](Assets/screenshot1.jpg "Screenshot")
 Results Page
+
 ![Screenshot](Assets/screenshot2.jpg "Screenshot")
+Mobile Responsive
+
+![Screenshot](Assets/screenshot3.jpg "Screenshot")
