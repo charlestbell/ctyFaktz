@@ -212,7 +212,7 @@ function initAutocomplete() {
     });
     map.fitBounds(bounds);
 
-    //wikipedia api
+    //GeoNames wikipedia api
     const geoSettings = {
       url:
         "http://api.geonames.org/wikipediaSearchJSON?q=" +
