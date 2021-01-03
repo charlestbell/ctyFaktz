@@ -1,12 +1,6 @@
 var searchInput = "";
-var terms;
-var population;
-var pop;
-var usedFacts = [];
-var onLanding = true;
-
 //Array which contains search parameters for yelp api call
-terms = [
+var terms = [
   "Starbucks",
   "resturant",
   "museum",
@@ -14,6 +8,10 @@ terms = [
   "park",
   "McDonalds",
 ];
+var population;
+var pop;
+var usedFacts = [];
+var onLanding = true;
 
 //an array of objects that holds the funny fact description and the number accosiated with it.
 var funFacts = [
@@ -91,6 +89,23 @@ function getrando() {
   return rando;
 }
 
+function getYelpResults(settings) {
+  try {
+    console.log("We tried...");
+    $.ajax(settings).then(function (response) {
+      console.log("response ", response);
+      $(`#usefulFactoids${x}`).empty();
+      var perCapita = Math.ceil(pop / response.total);
+      var items = "A " + nameOfResponse + " every " + perCapita + " people.";
+      $(`#usefulFactoids${x}`).append(items);
+    });
+  } catch (e) {
+    console.error(e);
+  } finally {
+    $(".progress").addClass("hide");
+  }
+}
+
 //beginning of Google maps API
 // <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIwzALxUPNbatRBj3Xi1Uhp0fFzwWNBkE&libraries=places">
 function initAutocomplete() {
@@ -137,6 +152,7 @@ function initAutocomplete() {
 
     //Reposition searchBox element and append it to new location on search page
     inputBox
+      .removeClass()
       .attr("id", "pac-input")
       .attr("type", "text")
       .addClass("onSearchPage pac-input controls mainSearchBox rounded")
@@ -260,7 +276,7 @@ function initAutocomplete() {
 
     //For loop that calls the yelp api
     //loop runs for each element in terms array
-    for (i = 0; i < terms.length + 1; i++) {
+    for (i = 0; i < terms.length; i++) {
       // yelp api
       const nameOfResponse = terms[i];
       const x = i;
@@ -282,13 +298,7 @@ function initAutocomplete() {
           // "Access-Control-Allow-Origin": "*"
         },
       };
-      $.ajax(settings).then(function (response) {
-        $(`#usefulFactoids${x}`).empty();
-        var perCapita = Math.ceil(pop / response.total);
-        var items = "A " + nameOfResponse + " every " + perCapita + " people.";
-        $(`#usefulFactoids${x}`).append(items);
-        $(".progress").addClass("hide"); //Hide Loading Bar
-      });
+      getYelpResults(settings);
     }
   });
 }

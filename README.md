@@ -23,6 +23,8 @@ Search for a city and ctyFaktz will pull from multiple sources to display useful
 
 ## Upcoming Features
 
+- Compare 2 Cities side by side
+- User-customizeable city amenity search
 - Custom Per Capita search
 - % of McDonald's Ice Cream Machines working by city
 
