@@ -89,7 +89,7 @@ function getrando() {
   return rando;
 }
 
-function getYelpResults(settings) {
+function getYelpResults(settings, x, nameOfResponse, pop, response) {
   try {
     console.log("We tried...");
     $.ajax(settings).then(function (response) {
@@ -244,7 +244,7 @@ function initAutocomplete() {
     //openweatherapi
     var queryURL = `https://api.openweathermap.org/data/2.5/forecast?q=${searchInput}&appid=55165c51eb244bc563baf90a2d02b714`;
 
-    //ajax call
+    //Get city population from OpenWeathermap.org
     $.ajax({
       url: queryURL,
       method: "GET",
@@ -298,7 +298,7 @@ function initAutocomplete() {
           // "Access-Control-Allow-Origin": "*"
         },
       };
-      getYelpResults(settings);
+      getYelpResults(settings, x, nameOfResponse, pop, response);
     }
   });
 }
