@@ -1,12 +1,6 @@
 var searchInput = "";
-var terms;
-var population;
-var pop;
-var usedFacts = [];
-var onLanding = true;
-
 //Array which contains search parameters for yelp api call
-terms = [
+var terms = [
   "Starbucks",
   "resturant",
   "museum",
@@ -14,6 +8,10 @@ terms = [
   "park",
   "McDonalds",
 ];
+let population;
+let pop;
+var usedFacts = [];
+var onLanding = true;
 
 //an array of objects that holds the funny fact description and the number accosiated with it.
 var funFacts = [
@@ -91,6 +89,21 @@ function getrando() {
   return rando;
 }
 
+async function getYelpResults(settings, x, nameOfResponse) {
+  try {
+    $.ajax(settings).then(function (response) {
+      $(`#usefulFactoids${x}`).empty();
+      var perCapita = Math.ceil(pop / response.total);
+      var items = "A " + nameOfResponse + " every " + perCapita + " people.";
+      $(`#usefulFactoids${x}`).append(items);
+    });
+  } catch (e) {
+    console.error(e);
+  } finally {
+    $(".progress").addClass("hide");
+  }
+}
+
 //beginning of Google maps API
 // <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIwzALxUPNbatRBj3Xi1Uhp0fFzwWNBkE&libraries=places">
 function initAutocomplete() {
@@ -125,7 +138,7 @@ function initAutocomplete() {
 
   // Listen for the event fired when the user selects a prediction and retrieve
   // more details for that place.
-  searchBox.addListener("places_changed", () => {
+  searchBox.addListener("places_changed", async () => {
     // Hide the landing page and reveal the search page
     if (!$("#landingPage").hasClass("hide")) {
       //If landing page is not hidden
@@ -137,6 +150,7 @@ function initAutocomplete() {
 
     //Reposition searchBox element and append it to new location on search page
     inputBox
+      .removeClass()
       .attr("id", "pac-input")
       .attr("type", "text")
       .addClass("onSearchPage pac-input controls mainSearchBox rounded")
@@ -228,7 +242,7 @@ function initAutocomplete() {
     //openweatherapi
     var queryURL = `https://api.openweathermap.org/data/2.5/forecast?q=${searchInput}&appid=55165c51eb244bc563baf90a2d02b714`;
 
-    //ajax call
+    //Get city population from OpenWeathermap.org
     $.ajax({
       url: queryURL,
       method: "GET",
@@ -260,11 +274,12 @@ function initAutocomplete() {
 
     //For loop that calls the yelp api
     //loop runs for each element in terms array
-    for (i = 0; i < terms.length + 1; i++) {
+
+    for (i = 0; i < terms.length; i++) {
       // yelp api
       const nameOfResponse = terms[i];
       const x = i;
-      var herokuApp = "https://cors-anywhere.herokuapp.com/";
+      var herokuApp = "https://kickflip-cors-anywhere.herokuapp.com/";
       var settings = {
         async: true,
         crossDomain: true,
@@ -282,13 +297,10 @@ function initAutocomplete() {
           // "Access-Control-Allow-Origin": "*"
         },
       };
-      $.ajax(settings).then(function (response) {
-        $(`#usefulFactoids${x}`).empty();
-        var perCapita = Math.ceil(pop / response.total);
-        var items = "A " + nameOfResponse + " every " + perCapita + " people.";
-        $(`#usefulFactoids${x}`).append(items);
-        $(".progress").addClass("hide"); //Hide Loading Bar
-      });
+      // Wait for moment so that heroku doesn't throw a "too many requests per second" error
+      await new Promise((resolve) => setTimeout(resolve, 200)); // Copied from a youtube video. https://www.youtube.com/watch?v=049FE6xa6_M
+      getYelpResults(settings, x, nameOfResponse);
+      console.log("api called");
     }
   });
 }
