@@ -1,4 +1,8 @@
 var searchInput = "";
+let population;
+let pop;
+var usedFacts = [];
+
 //Array which contains search parameters for yelp api call
 var terms = [
   "Starbucks",
@@ -7,11 +11,10 @@ var terms = [
   "bowling alley",
   "park",
   "McDonalds",
+  "Chipotle",
+  "hospital",
+  "gym",
 ];
-let population;
-let pop;
-var usedFacts = [];
-var onLanding = true;
 
 //an array of objects that holds the funny fact description and the number accosiated with it.
 var funFacts = [
@@ -104,7 +107,7 @@ async function getYelpResults(settings, x, nameOfResponse) {
   }
 }
 
-//beginning of Google maps API
+//Beginning of Google maps API
 // <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIwzALxUPNbatRBj3Xi1Uhp0fFzwWNBkE&libraries=places">
 function initAutocomplete() {
   const map = new google.maps.Map(document.getElementById("map"), {
@@ -112,16 +115,6 @@ function initAutocomplete() {
     zoom: 11, //zoom increases as number increases
     mapTypeId: "roadmap",
   });
-
-  /** 
-  //Auto complete parameters which limits the search to cities
-  var options = {
-  types: ['(cities)'],
-  componentRestrictions: {country: "us"} //sets the search to a specific country
-   };
-  //Search box with auto correct
-  const searchBox = new google.maps.places.Autocomplete(input, options);
-  */
 
   // Create the search box and link it to the UI element.
   var input = document.querySelector("#pac-input");
@@ -264,13 +257,16 @@ function initAutocomplete() {
         }
 
         var funFactAmounts = Math.round(funFactAmount);
-        var funnyFacts = funFacts[index].description; //gets fun fact description from array randomly
+
+        //gets fun fact description from array randomly
+        var funnyFacts = funFacts[index].description;
+
         $(`#funFact${x}`).append(funnyFacts);
         $(`#funAmount${x}`).append(funFactAmounts);
       }
       //end of funny facts
     });
-    //end os open weather api call
+    //end of open weather api call
 
     //For loop that calls the yelp api
     //loop runs for each element in terms array
@@ -300,7 +296,6 @@ function initAutocomplete() {
       // Wait for moment so that heroku doesn't throw a "too many requests per second" error
       await new Promise((resolve) => setTimeout(resolve, 200)); // Copied from a youtube video. https://www.youtube.com/watch?v=049FE6xa6_M
       getYelpResults(settings, x, nameOfResponse);
-      console.log("api called");
     }
   });
 }
@@ -308,22 +303,3 @@ function initAutocomplete() {
 $("form").submit(function (e) {
   e.preventDefault();
 });
-
-// $("form").keypress(function (event) {
-//   if (event.key == "Enter") {
-//     $("#searchButton").click();
-//   }
-// });
-
-//Google places api | Need to look into this to see if we can pull pictures from it
-//Currently not in use
-// let heroku = "https://cors-anywhere.herokuapp.com/";
-// let queryURL =
-//   "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=sydney&inputtype=textquery&fields=photos,formatted_address,name,opening_hours,rating&locationbias=circle:2000@47.6918452,-122.2226413&key=AIzaSyBxxikd5sBYySsC4ExQM_Y1plVzBP7Ljbk";
-// $.ajax({
-//   url: heroku + queryURL,
-//   method: "GET",
-//   dataType: "json",
-// }).then(function (response) {
-//   console.log(response);
-// });

@@ -31,7 +31,7 @@ main {
 /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
 #map {
-  height: 600px;
+  height: 715px;
   position: inline block;
   overflow: hidden;
 }
