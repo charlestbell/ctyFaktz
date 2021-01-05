@@ -24,9 +24,9 @@ Search for a city and ctyFaktz will pull from multiple sources to display useful
 ## Upcoming Features
 
 - Compare 2 Cities side by side
-- User-customizeable city amenity search
-- Custom Per Capita search
+- User-customizable city amenity search
 - % of McDonald's Ice Cream Machines working by city
+- City Air Quality
 
 ### Screenshots
 
@@ -39,3 +39,7 @@ Results Page
 Mobile Responsive
 
 ![Screenshot](Assets/screenshot3.jpg "Screenshot")
+
+![Screenshot](Assets/screenshot4.jpg "Screenshot")
+
+![Screenshot](Assets/screenshot5.jpg "Screenshot")

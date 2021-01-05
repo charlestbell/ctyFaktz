@@ -11,7 +11,7 @@ var terms = [
   "bowling alley",
   "park",
   "McDonalds",
-  "Chipotle",
+  "Movie Theater",
   "hospital",
   "gym",
 ];
@@ -44,19 +44,19 @@ var funFacts = [
   },
   {
     description: "Portals to Narnia",
-    amount: 0.000001445,
+    amount: 0.000002445,
   },
   {
     description: "Autobots in disguise",
-    amount: 0.00000087234,
+    amount: 0.00000187234,
   },
   {
     description: "Mutant Ninja Turtles in Sewers",
-    amount: 0.00000493,
+    amount: 0.00000693,
   },
   {
     description: "Channing Tatems pretentending to be in high shool",
-    amount: 0.0000007839,
+    amount: 0.0000013839,
   },
 ];
 
