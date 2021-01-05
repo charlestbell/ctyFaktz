@@ -7,21 +7,23 @@ body {
   min-height: 100vh;
   flex-direction: column;
 }
-html { 
-  background: url(city_background.jpg) no-repeat center fixed; 
+body {
+  background: url(city_background.jpg) no-repeat center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
   background-position: top center;
-  
 }
 main {
   flex: 1 0 auto;
 }
+#mapContainer {
+  width: 100%;
+}
 #searchFormEl {
   display: inline-block;
-  width: 60%;
+  width: 90%;
 }
 /* h5 {
   font-size: 2.2rem !important;
@@ -29,8 +31,9 @@ main {
 /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
 #map {
-  height: 70%;
-  position: absolute;
+  height: 715px;
+  position: inline block;
+  overflow: hidden;
 }
 #cityDetails:first-child {
   padding-top: 10px;
@@ -48,7 +51,7 @@ main {
   width: 100%;
 }
 #mainNav {
-  height: 67px;
+  min-height: 67px;
 }
 /* Optional: Makes the sample page fill the window. */
 
@@ -73,27 +76,31 @@ main {
 #usefulFactoids {
   min-height: 450px;
 }
-
 #pac-container {
   padding-bottom: 12px;
   margin-right: 12px;
 }
-
 #pac-input {
   background-color: #fff;
   font-family: Roboto;
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 400;
+  margin-top: 10px;
+  padding-left: 15px;
 
-  padding: 0 15px 0 13px;
-  text-overflow: auto;
-  width: 82%;
-  /* Playing with margins to fit more responsive */
-  margin: 12px 24px 9px 48px;
-  position: relative;
+  text-overflow: ellipsis;
+}
+
+#citySummary {
+  font-size: large;
 }
 
 #pac-input:focus {
+  border-color: #4d90fe;
+}
+
+#pac-input:hover {
+  border: solid;
   border-color: #4d90fe;
 }
 
@@ -109,8 +116,6 @@ main {
   width: 345px;
 }
 
-
-
 #copyright {
   left: 50%;
   transform: translateX(-50%);
@@ -121,6 +126,51 @@ main {
 
 #landingSearchCont {
   text-align: center;
+}
+#pac-input.landingSearchBox {
+  width: 95%;
+}
+.rounded {
+  border-radius: 4px;
+}
+.pac-card {
+  margin: 10px 10px 0 0;
+  border-radius: 2px 0 0 2px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  outline: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  background-color: #fff;
+  font-family: Roboto;
+  padding-top: 20px;
+}
+.pac-item-query {
+  font-size: large;
+}
+
+.pac-controls {
+  /* display: inline-block; */
+  padding: 5px 11px;
+}
+
+.pac-controls label {
+  font-family: Roboto;
+  font-size: 13px;
+  font-weight: 300;
+}
+
+.center #landingPage {
+  width: 25%;
+  display: grid;
+  place-items: center;
+  justify-content: center;
+}
+
+.box {
+  flex: 1 1 150px;
+}
+
+.onSearchPage:hover {
 }
 .rounded {
   border-radius: 4px !important;
@@ -137,7 +187,6 @@ main {
   padding-top: 20px;
 }
 .pac-controls {
-  /* display: inline-block; */
   padding: 5px 11px;
 }
 
@@ -200,10 +249,23 @@ main {
 
 /* Margin Left */
 .ml-1 {
-  margin-left: 1rem;
+  margin-left: 1rem !important;
 }
 .ml-2 {
-  margin-left: 2rem;
+  margin-left: 2rem !important;
+}
+/* Margin Right */
+.mr-1 {
+  margin-right: 1rem !important;
+}
+.mr-2 {
+  margin-right: 2rem !important;
+}
+.mr-3 {
+  margin-right: 3rem !important;
+}
+.mr-4 {
+  margin-right: 4rem !important;
 }
 /* Padding */
 .p-1 {

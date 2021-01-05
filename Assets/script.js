@@ -1,8 +1,20 @@
 var searchInput = "";
-var terms;
-var population;
-var pop;
+let population;
+let pop;
 var usedFacts = [];
+
+//Array which contains search parameters for yelp api call
+var terms = [
+  "Starbucks",
+  "resturant",
+  "museum",
+  "bowling alley",
+  "park",
+  "McDonalds",
+  "Chipotle",
+  "hospital",
+  "gym",
+];
 
 //an array of objects that holds the funny fact description and the number accosiated with it.
 var funFacts = [
@@ -47,30 +59,15 @@ var funFacts = [
     amount: 0.0000007839,
   },
 ];
-//Function to determine the fun fact amount based of of population total
-// function amount(population, index) {
-//   var amount;
-//   if (population < 50000) amount = funFacts[index].amount * 100;
-//   else if (population > 50000 && population < 150000)
-//     amount = funFacts[index].amount * 200;
-//   else if (population > 150000 && population < 250000)
-//     amount = funFacts[index].amount * 300;
-//   else if (population > 250000 && population < 350000)
-//     amount = funFacts[index].amount * 400;
-//   else if (population > 350000 && population < 450000)
-//     amount = funFacts[index].amount * 500;
-//   else if (population > 450000 && population < 550000)
-//     amount = funFacts[index].amount * 600;
-//   else if (population > 550000 && population < 650000)
-//     amount = funFacts[index].amount * 700;
-//   else if (population > 650000 && population < 750000)
-//     amount = funFacts[index].amount * 800;
-//   else if (population > 750000 && population < 850000)
-//     amount = funFacts[index].amount * 90;
-//   else amount = funFacts[index].amount * 10000;
 
-//   return amount;
-// }
+//Creates searchBox elemetn and appends it to the landing page
+var inputBox = $("<input>")
+  .attr("id", "pac-input")
+  .attr("type", "text")
+  .attr("placeholder", "Find a City!")
+  .addClass("pac-input controls landingSearchBox rounded");
+
+$("#searchFormEl").append(inputBox);
 
 //Random number genorator to get random number for funny facts
 //function also checks if random number has already been generated in current sequence
@@ -86,27 +83,39 @@ function getrando() {
     } else {
       for (var x = 0; x < usedFacts.length; x++) {
         if (usedFacts[x] === rando) {
-          console.log(`Issue found`);
           match = true;
         }
       }
     }
   }
-  // console.log(usedFacts);
   usedFacts.push(rando);
   return rando;
 }
 
-//beginning of Google maps API
+async function getYelpResults(settings, x, nameOfResponse) {
+  try {
+    $.ajax(settings).then(function (response) {
+      $(`#usefulFactoids${x}`).empty();
+      var perCapita = Math.ceil(pop / response.total);
+      var items = "A " + nameOfResponse + " every " + perCapita + " people.";
+      $(`#usefulFactoids${x}`).append(items);
+    });
+  } catch (e) {
+    console.error(e);
+  } finally {
+    $(".progress").addClass("hide");
+  }
+}
+
+//Beginning of Google maps API
 // <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIwzALxUPNbatRBj3Xi1Uhp0fFzwWNBkE&libraries=places">
 function initAutocomplete() {
-  // // Swap which input field is activated
-
   const map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: 33.973019, lng: -117.328236 }, //sets the location when app is opened
     zoom: 11, //zoom increases as number increases
     mapTypeId: "roadmap",
   });
+<<<<<<< HEAD
   //Auto complete parameters which limits the search to cities
   // var options = {
   // types: ['(cities)'],
@@ -120,32 +129,53 @@ function initAutocomplete() {
   // const searchBox = new google.maps.places.Autocomplete(input, options);
   //attaches search bar to map
   // map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+=======
+
+  // Create the search box and link it to the UI element.
+  var input = document.querySelector("#pac-input");
+
+  //Search box without auto correct
+  var searchBox = new google.maps.places.SearchBox(input);
+>>>>>>> 343ee9b34bac402cf1f40c7c6cf4f050a8743f3f
 
   // Bias the SearchBox results towards current map's viewport.
   map.addListener("bounds_changed", () => {
     searchBox.setBounds(map.getBounds());
   });
   let markers = [];
+<<<<<<< HEAD
+=======
+
+>>>>>>> 343ee9b34bac402cf1f40c7c6cf4f050a8743f3f
   // Listen for the event fired when the user selects a prediction and retrieve
   // more details for that place.
-  searchBox.addListener("places_changed", () => {
+  searchBox.addListener("places_changed", async () => {
     // Hide the landing page and reveal the search page
-    $(".landingSearchBox").removeAttr("id");
     if (!$("#landingPage").hasClass("hide")) {
-      console.log("the landing page was visible");
-      $("#landingPage").addClass("hide");
-    }
-    $("#searchPage").removeClass("hide");
+      //If landing page is not hidden
+      $("#landingPage").addClass("hide"); //Hide landing page
+      $("#landingSearchCont").empty();
+      $("#searchPage").removeClass("hide"); //Show search page
+      $(".progress").removeClass("hide"); //Show Loading Bar
+    } //End if
 
-    $(".progress").removeClass("hide"); //Show Loading Bar
+    //Reposition searchBox element and append it to new location on search page
+    inputBox
+      .removeClass()
+      .attr("id", "pac-input")
+      .attr("type", "text")
+      .addClass("onSearchPage pac-input controls mainSearchBox rounded")
+      .attr("placeholder", "Find a City!"); //reset the search bar to the placeholder text
 
-    if (!$(".landingSearchBox").attr("id")) {
-      $("#landingSearchBox").empty();
-      initAutocomplete();
-      console.log("re-initiated");
-    }
+    $("#searchBoxPage").append(inputBox);
 
+    //Sets places to search request
     const places = searchBox.getPlaces();
+<<<<<<< HEAD
+=======
+
+    //if no results are found do nothing
+>>>>>>> 343ee9b34bac402cf1f40c7c6cf4f050a8743f3f
     if (places.length == 0) {
       return;
     }
@@ -153,7 +183,17 @@ function initAutocomplete() {
     markers.forEach((marker) => {
       marker.setMap(null);
     });
+<<<<<<< HEAD
     markers = [];
+=======
+
+    markers = []; //Sets the array that contains markers to empty so that new locations can be added
+    usedFacts = []; //Sets the array that contains the fun fact indexes that have bveen used to null or empty.
+
+    $("#cityDetails").empty(); //Empties out element that contains the city name and population
+    $("#citySummary").empty();
+
+>>>>>>> 343ee9b34bac402cf1f40c7c6cf4f050a8743f3f
     // For each place, get the icon, name and location.
     const bounds = new google.maps.LatLngBounds();
     /////////////////////////////////////
@@ -196,23 +236,36 @@ function initAutocomplete() {
       }
     });
     map.fitBounds(bounds);
+<<<<<<< HEAD
     //wikipedia api
+=======
+
+    //GeoNames wikipedia api
+>>>>>>> 343ee9b34bac402cf1f40c7c6cf4f050a8743f3f
     const geoSettings = {
       url:
         "http://api.geonames.org/wikipediaSearchJSON?q=" +
         searchInput +
         "&maxRows=10&username=hunter7",
+<<<<<<< HEAD
       //   // url: "http://api.geonames.org/citiesJSON?north=44.1&south=-9.9&east=-22.4&west=55.2&lang=de&username=hunter7",
       //   // url: "http://api.geonames.org/getJSON?geonameId=8096217&username=hunter7",//this is good alot of info but still need the geoname id
       //   // url: "http://api.geonames.org/wikipediaBoundingBoxJSON?north=34.033481&south=33.907677&east=-117.54897&west=-117.615501&username=hunter7", //this gets the summary
+=======
+>>>>>>> 343ee9b34bac402cf1f40c7c6cf4f050a8743f3f
       method: "GET",
     };
     $.ajax(geoSettings).then(function (resp) {
       console.log("geonames");
       console.log(resp);
       //create sumamry element
+<<<<<<< HEAD
       var summary = $("<p>").text(resp.geonames[0].summary);
       $("#usefulFactoids").append(summary);
+=======
+      var summary = $("<p>").text(resp.geonames[0].summary); //font size set to large in css
+      $("#citySummary").append(summary);
+>>>>>>> 343ee9b34bac402cf1f40c7c6cf4f050a8743f3f
     });
     //end of wiki api
      terms = ["Starbucks", "Resturants", "Museums", "Bowling Alley"];
@@ -225,7 +278,7 @@ function initAutocomplete() {
 
     var queryURL5Day = `https://api.openweathermap.org/data/2.5/forecast?q=${searchInput}&appid=55165c51eb244bc563baf90a2d02b714`;
 
-    //ajax call
+    //Get city population from OpenWeathermap.org
     $.ajax({
       url: queryURL5Day,
       method: "GET",
@@ -249,12 +302,16 @@ function initAutocomplete() {
         }
 
         var funFactAmounts = Math.round(funFactAmount);
-        var funnyFacts = funFacts[index].description; //gets fun fact description from array randomly
+
+        //gets fun fact description from array randomly
+        var funnyFacts = funFacts[index].description;
+
         $(`#funFact${x}`).append(funnyFacts);
         $(`#funAmount${x}`).append(funFactAmounts);
       }
       //end of funny facts
     });
+<<<<<<< HEAD
     var queryURLcur = `https://api.openweathermap.org/data/2.5/weather?q=${searchInput}&appid=55165c51eb244bc563baf90a2d02b714`;
 
     //Array which contains search parameters for yelp api call
@@ -266,13 +323,23 @@ function initAutocomplete() {
       "park",
       "McDonalds",
     ];
+=======
+    //end of open weather api call
+>>>>>>> 343ee9b34bac402cf1f40c7c6cf4f050a8743f3f
 
     //For loop that calls the yelp api
     //loop runs for each element in terms array
-    for (i = 0; i < terms.length + 1; i++) {
+
+    for (i = 0; i < terms.length; i++) {
       // yelp api
+<<<<<<< HEAD
       const nameOfResponse = terms[i]
       var herokuApp = "https://cors-anywhere.herokuapp.com/";
+=======
+      const nameOfResponse = terms[i];
+      const x = i;
+      var herokuApp = "https://kickflip-cors-anywhere.herokuapp.com/";
+>>>>>>> 343ee9b34bac402cf1f40c7c6cf4f050a8743f3f
       var settings = {
         async: true,
         crossDomain: true,
@@ -291,14 +358,9 @@ function initAutocomplete() {
         },
       
       };
-      $.ajax(settings).then(function (response) {
-        $(`#usefulFactoids${x}`).empty();
-        var perCapita = Math.ceil(pop / response.total);
-
-        var items = "A " + nameOfResponse + " every " + perCapita + " people.";
-        $(`#usefulFactoids${x}`).append(items);
-        $(".progress").addClass("hide"); //Hide Loading Bar
-      });
+      // Wait for moment so that heroku doesn't throw a "too many requests per second" error
+      await new Promise((resolve) => setTimeout(resolve, 200)); // Copied from a youtube video. https://www.youtube.com/watch?v=049FE6xa6_M
+      getYelpResults(settings, x, nameOfResponse);
     }
   });
 }
@@ -306,20 +368,3 @@ function initAutocomplete() {
 $("form").submit(function (e) {
   e.preventDefault();
 });
-
-// $("form").keypress(function (event) {
-//   if (event.key == "Enter") {
-//     $("#searchButton").click();
-//   }
-// });
-
-//Google places api | Need to look into this to see if we can pull pictures from it
-//Currently not in use
-// let heroku = "https://cors-anywhere.herokuapp.com/";
-// let queryURL =
-//   "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=restaurants+in+sydney&inputtype=textquery&fields=photos,formatted_address,name,opening_hours,rating&locationbias=circle:2000@47.6918452,-122.2226413&key=AIzaSyBxxikd5sBYySsC4ExQM_Y1plVzBP7Ljbk";
-// $.ajax({
-//   url: heroku + queryURL,
-//   method: "GET",
-//   dataType: "json",
-// }).then(function (response) {});
