@@ -115,38 +115,18 @@ function initAutocomplete() {
     zoom: 11, //zoom increases as number increases
     mapTypeId: "roadmap",
   });
-<<<<<<< HEAD
-  //Auto complete parameters which limits the search to cities
-  // var options = {
-  // types: ['(cities)'],
-  // componentRestrictions: {country: "us"} //sets the search to a specific country
-  //  };
-  // Create the search box and link it to the UI element.
-  const input = document.getElementById("pac-input");
-  //Search box without auto correct
-  const searchBox = new google.maps.places.SearchBox(input);
-  //Search box with auto correct
-  // const searchBox = new google.maps.places.Autocomplete(input, options);
-  //attaches search bar to map
-  // map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-=======
 
   // Create the search box and link it to the UI element.
   var input = document.querySelector("#pac-input");
 
   //Search box without auto correct
   var searchBox = new google.maps.places.SearchBox(input);
->>>>>>> 343ee9b34bac402cf1f40c7c6cf4f050a8743f3f
 
   // Bias the SearchBox results towards current map's viewport.
   map.addListener("bounds_changed", () => {
     searchBox.setBounds(map.getBounds());
   });
   let markers = [];
-<<<<<<< HEAD
-=======
-
->>>>>>> 343ee9b34bac402cf1f40c7c6cf4f050a8743f3f
   // Listen for the event fired when the user selects a prediction and retrieve
   // more details for that place.
   searchBox.addListener("places_changed", async () => {
@@ -171,11 +151,9 @@ function initAutocomplete() {
 
     //Sets places to search request
     const places = searchBox.getPlaces();
-<<<<<<< HEAD
-=======
+
 
     //if no results are found do nothing
->>>>>>> 343ee9b34bac402cf1f40c7c6cf4f050a8743f3f
     if (places.length == 0) {
       return;
     }
@@ -183,9 +161,6 @@ function initAutocomplete() {
     markers.forEach((marker) => {
       marker.setMap(null);
     });
-<<<<<<< HEAD
-    markers = [];
-=======
 
     markers = []; //Sets the array that contains markers to empty so that new locations can be added
     usedFacts = []; //Sets the array that contains the fun fact indexes that have bveen used to null or empty.
@@ -193,7 +168,6 @@ function initAutocomplete() {
     $("#cityDetails").empty(); //Empties out element that contains the city name and population
     $("#citySummary").empty();
 
->>>>>>> 343ee9b34bac402cf1f40c7c6cf4f050a8743f3f
     // For each place, get the icon, name and location.
     const bounds = new google.maps.LatLngBounds();
     /////////////////////////////////////
@@ -236,42 +210,27 @@ function initAutocomplete() {
       }
     });
     map.fitBounds(bounds);
-<<<<<<< HEAD
-    //wikipedia api
-=======
 
     //GeoNames wikipedia api
->>>>>>> 343ee9b34bac402cf1f40c7c6cf4f050a8743f3f
     const geoSettings = {
       url:
         "http://api.geonames.org/wikipediaSearchJSON?q=" +
         searchInput +
         "&maxRows=10&username=hunter7",
-<<<<<<< HEAD
-      //   // url: "http://api.geonames.org/citiesJSON?north=44.1&south=-9.9&east=-22.4&west=55.2&lang=de&username=hunter7",
-      //   // url: "http://api.geonames.org/getJSON?geonameId=8096217&username=hunter7",//this is good alot of info but still need the geoname id
-      //   // url: "http://api.geonames.org/wikipediaBoundingBoxJSON?north=34.033481&south=33.907677&east=-117.54897&west=-117.615501&username=hunter7", //this gets the summary
-=======
->>>>>>> 343ee9b34bac402cf1f40c7c6cf4f050a8743f3f
       method: "GET",
     };
     $.ajax(geoSettings).then(function (resp) {
       console.log("geonames");
       console.log(resp);
       //create sumamry element
-<<<<<<< HEAD
-      var summary = $("<p>").text(resp.geonames[0].summary);
-      $("#usefulFactoids").append(summary);
-=======
       var summary = $("<p>").text(resp.geonames[0].summary); //font size set to large in css
       $("#citySummary").append(summary);
->>>>>>> 343ee9b34bac402cf1f40c7c6cf4f050a8743f3f
     });
     //end of wiki api
      terms = ["Starbucks", "Resturants", "Museums", "Bowling Alley"];
 
     
-  // });
+//   });
 // }
 
     //openweatherapi
@@ -311,35 +270,16 @@ function initAutocomplete() {
       }
       //end of funny facts
     });
-<<<<<<< HEAD
-    var queryURLcur = `https://api.openweathermap.org/data/2.5/weather?q=${searchInput}&appid=55165c51eb244bc563baf90a2d02b714`;
-
-    //Array which contains search parameters for yelp api call
-    terms = [
-      "Starbucks",
-      "resturant",
-      "museum",
-      "bowling alley",
-      "park",
-      "McDonalds",
-    ];
-=======
     //end of open weather api call
->>>>>>> 343ee9b34bac402cf1f40c7c6cf4f050a8743f3f
 
     //For loop that calls the yelp api
     //loop runs for each element in terms array
 
     for (i = 0; i < terms.length; i++) {
       // yelp api
-<<<<<<< HEAD
-      const nameOfResponse = terms[i]
-      var herokuApp = "https://cors-anywhere.herokuapp.com/";
-=======
       const nameOfResponse = terms[i];
       const x = i;
       var herokuApp = "https://kickflip-cors-anywhere.herokuapp.com/";
->>>>>>> 343ee9b34bac402cf1f40c7c6cf4f050a8743f3f
       var settings = {
         async: true,
         crossDomain: true,

@@ -170,8 +170,8 @@ main {
   flex: 1 1 150px;
 }
 
-.onSearchPage:hover {
-}
+/* .onSearchPage:hover {
+} */
 .rounded {
   border-radius: 4px !important;
 }
