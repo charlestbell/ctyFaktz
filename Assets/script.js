@@ -92,7 +92,7 @@ function getrando() {
   return rando;
 }
 
-async function getYelpResults(settings, x, nameOfResponse) {
+function getYelpResults(settings, x, nameOfResponse) {
   try {
     $.ajax(settings).then(function (response) {
       $(`#usefulFactoids${x}`).empty();
