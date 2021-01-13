@@ -21,6 +21,12 @@ Search for a city and ctyFaktz will pull from multiple sources to display useful
 - A landing page for some pizzazz
 - A reassuring loading bar while you wait
 
+## Technologies
+
+- Materialize
+- Jquery
+- Heroku
+
 ## Upcoming Features
 
 - Compare 2 Cities side by side
