@@ -92,7 +92,7 @@ function getrando() {
   return rando;
 }
 
-async function getYelpResults(settings, x, nameOfResponse) {
+function getYelpResults(settings, x, nameOfResponse) {
   try {
     $.ajax(settings).then(function (response) {
       $(`#usefulFactoids${x}`).empty();
@@ -103,7 +103,6 @@ async function getYelpResults(settings, x, nameOfResponse) {
   } catch (e) {
     console.error(e);
   } finally {
-    $(".progress").addClass("hide");
   }
 }
 
@@ -115,7 +114,6 @@ function initAutocomplete() {
     zoom: 11, //zoom increases as number increases
     mapTypeId: "roadmap",
   });
-
   // Create the search box and link it to the UI element.
   var input = document.querySelector("#pac-input");
 
@@ -138,9 +136,8 @@ function initAutocomplete() {
       $("#landingPage").addClass("hide"); //Hide landing page
       $("#landingSearchCont").empty();
       $("#searchPage").removeClass("hide"); //Show search page
-      $(".progress").removeClass("hide"); //Show Loading Bar
     } //End if
-
+    $(".progress").removeClass("hide"); //Show Loading Bar
     //Reposition searchBox element and append it to new location on search page
     inputBox
       .removeClass()
@@ -297,6 +294,7 @@ function initAutocomplete() {
       await new Promise((resolve) => setTimeout(resolve, 200)); // Copied from a youtube video. https://www.youtube.com/watch?v=049FE6xa6_M
       getYelpResults(settings, x, nameOfResponse);
     }
+    $(".progress").addClass("hide");
   });
 }
 
